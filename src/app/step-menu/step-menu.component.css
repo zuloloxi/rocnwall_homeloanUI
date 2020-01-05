@@ -1,0 +1,15 @@
+.fildefer {
+  margin-top:100px;
+}
+
+.titre {
+  text-align: center;
+  color: red;
+}
+.ui-steps .ui-steps-item {
+  width: 25%;
+}
+
+.ui-state-complete .ui-steps-number {
+   background-color: green !important;
+}
