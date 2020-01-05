@@ -3,11 +3,11 @@
 
     <h5>Veuillez choisir le type de projet :</h5>
     <div class="form-group type-projet">
-        <input type="radio" id="achat" formControlName="projectType" value="Achat">
+        <input type="radio" id="achat" formControlName="projectType" value="PURCHASE" checked>
         <label for="achat">Achat</label>
     </div>
     <div class="form-group type-projet">
-        <input type="radio" id="construction" formControlName="projectType" value="Construction">
+        <input type="radio" id="construction" formControlName="projectType" value="CONSTRUCTION">
         <label for="construction">Construction</label>
     </div>
 
@@ -28,6 +28,6 @@
         <input formControlName="maxLoanPayment" class="form-control" type="number" step="100" min="0" placeholder="0">
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Enregistrer</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Suivant</button>
 
 </form>

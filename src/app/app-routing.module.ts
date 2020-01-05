@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { StepMenuComponent } from './step-menu/step-menu.component';
+import { StepMenuComponent } from './components/step-menu/step-menu.component';
 
 
 const routes: Routes = [

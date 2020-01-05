@@ -4,14 +4,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AngularAccueilComponent } from './angular-accueil/angular-accueil.component';
-import { StepMenuComponent } from './step-menu/step-menu.component';
+import { AngularAccueilComponent } from './components/angular-accueil/angular-accueil.component';
+import { StepMenuComponent } from './components/step-menu/step-menu.component';
 
 import { MenuModule } from 'primeng/menu';
 import { StepsModule } from 'primeng/steps';
-import { NavbarComponent } from './navbar/navbar.component';
-import { ProjectComponent } from './project/project.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ProjectComponent } from './components/project/project.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { EmprunteurFormComponent } from './components/emprunteur-form/emprunteur-form.component';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AngularAccueilComponent,
     StepMenuComponent,
     NavbarComponent,
-    ProjectComponent
+    ProjectComponent,
+    EmprunteurFormComponent
   ],
   imports: [
     FormsModule,
@@ -29,10 +32,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     AppRoutingModule,
     MenuModule,
-    StepsModule
+    StepsModule,
+    HttpClientModule
   ],
   providers: [
-    { provide: 'BACKEND_URL', useValue: 'http://localhost:8000' },
+    { provide: 'BACKEND_URL', useValue: 'http://localhost:8000' }
   ],
   bootstrap: [AppComponent]
 })
