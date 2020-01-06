@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Project } from '../../Models/mortgage-project';
 import { MortgageProjectService } from 'src/app/services/mortgage-project.service';
 
 @Component({
-  selector: 'app-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.css']
+  selector: 'app-project-form',
+  templateUrl: './project-form.component.html',
+  styleUrls: ['./project-form.component.css']
 })
-export class ProjectComponent implements OnInit {
+
+export class ProjectFormComponent implements OnInit {
 
   projectForm: FormGroup;
+  @Output() submitNext = new EventEmitter<Project>();
 
-  constructor(private fb: FormBuilder,
-              private router: Router,
-              private projectService: MortgageProjectService) { }
+  currentProject: Project;
+
+  constructor(private fb: FormBuilder, private router: Router, private projectService: MortgageProjectService) { }
 
   ngOnInit() {
     this.projectForm = this.fb.group({
@@ -29,7 +31,7 @@ export class ProjectComponent implements OnInit {
   saveProject() {
     // Transforme les données du formulaire en instance de Projet
     const formData = this.projectForm.value;
-    const project = new Project({
+    this.currentProject = new Project({
       referenceId: formData.referenceId,
       projectType: formData.projectType,
       householdCharges: formData.householdCharges,
@@ -37,11 +39,10 @@ export class ProjectComponent implements OnInit {
     });
 
     // Sauvegarde l'instance du projet.
-    console.log(project);
-    this.projectService.addMortgageProject(project).subscribe(() => {
-      // Confirmation
-      alert('Projet bien enregistré !');
-      this.router.navigate(['simulation/new']);
+    this.projectService.addMortgageProject(this.currentProject).subscribe(data => {
+      this.currentProject = data;
+      console.log(this.currentProject)
+      this.submitNext.emit(this.currentProject);
     });
   }
 }

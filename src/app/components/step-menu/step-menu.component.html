@@ -1,4 +1,5 @@
 <div class="fildefer">
     <p-steps [model]="items" styleClass="steps-custom" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
 </div>
-<app-emprunteur-form></app-emprunteur-form>
+<app-project-form *ngIf="activeIndex === 0" (submitNext)="incrementStep($event)"></app-project-form>
+<app-borrower-form [project]="currentProject" *ngIf="activeIndex === 1"></app-borrower-form>

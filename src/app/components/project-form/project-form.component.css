@@ -32,3 +32,7 @@ label {
 .type-projet input:checked {
   border: 6px solid black;
 }
+
+.btn {
+    float:right;
+}

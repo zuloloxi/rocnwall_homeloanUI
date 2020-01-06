@@ -44,6 +44,7 @@ export class MortgageProjectService {
 
   // PUT : update an existing mortgage product to the server
   updateMortgageProject(mortgageProjectDTO: Project): Observable<Project> {
+    console.log(mortgageProjectDTO);
     return this.http.put<Project>(`${this.baseUrl}/mortgageProjects/` + mortgageProjectDTO.id, mortgageProjectDTO, this.httpOptions);
   }
 

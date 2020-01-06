@@ -23,7 +23,7 @@ export class Project {
         this.referenceId = options.referenceId;
         this.projectType = options.projectType;
         this.householdCharges = options.householdCharges || 0;
-        this.maxLoanPayment = options.householdCharges || 0;
+        this.maxLoanPayment = options.maxLoanPayment || 0;
         this.borrowers = options.borrowers || [];
     }
 }

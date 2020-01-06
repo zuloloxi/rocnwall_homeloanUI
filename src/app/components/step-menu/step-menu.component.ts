@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core'
 import { MenuItem } from 'primeng/api';
+import { Project } from 'src/app/Models/mortgage-project';
 
 @Component({
   selector: 'app-step-menu',
@@ -10,11 +11,13 @@ import { MenuItem } from 'primeng/api';
 })
 export class StepMenuComponent implements OnInit {
   items: MenuItem[];
-  activeIndex: number = 0;
+  activeIndex: number;
+  currentProject: Project;
 
   constructor() { }
 
   ngOnInit() {
+    this.activeIndex = 0;
     this.items = [{
       label: 'Projet',
       command: (event: any) => {
@@ -23,7 +26,6 @@ export class StepMenuComponent implements OnInit {
     },
     {
       label: 'Emprunteur',
-      disabled: true,
       command: (event: any) => {
         this.activeIndex = 1;
       }
@@ -41,6 +43,13 @@ export class StepMenuComponent implements OnInit {
       }
     }
     ];
+  }
+
+  incrementStep(project: Project) {
+    console.log('Event reçu');
+    this.currentProject = project;
+    console.log(this.currentProject);
+    this.activeIndex ++;
   }
 
 }

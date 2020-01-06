@@ -1,0 +1,14 @@
+<form [formGroup]="borrowerForm" (ngSubmit)="saveBorrower()" novalidate>
+    <label for="dateOfBirth">Date de naissance</label>
+    <div>
+        <input formControlName="dateOfBirth" type="date" id="dateOfBirth"  min="1900-01-01" max="2019-12-31">
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Revenu net</label>
+        <input formControlName="netIncome" class="form-control" type="number" step="100" min="0" placeholder="0">
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!borrowerForm.valid">Suivant</button>
+
+</form>
