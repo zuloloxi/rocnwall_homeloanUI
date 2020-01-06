@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MortgageProjectService } from 'src/app/services/mortgage-project.service';
 import { Simulation } from 'src/app/Models/simulation';
+import { Project } from 'src/app/Models/mortgage-project';
+import { MortgageSimulationService } from 'src/app/services/mortgage-simulation.service';
 
 @Component({
   selector: 'app-simulation-form',
@@ -12,28 +14,32 @@ import { Simulation } from 'src/app/Models/simulation';
 export class SimulationFormComponent implements OnInit {
 
   simulationForm: FormGroup;
+  @Input() project: Project;
+  simulation: Simulation;
 
-  constructor(private fb: FormBuilder, private router: Router, private projectService: MortgageProjectService) { }
+  @Output() submitNext = new EventEmitter<Simulation>();
+
+  constructor(private fb: FormBuilder, private router: Router, private simulationService: MortgageSimulationService) { }
 
   ngOnInit() {
     this.simulationForm = this.fb.group({
-      simulationDate: ['', Validators.required],
-      personalDeposit: [''],
-      loanAmount: [''],
-      loanPayment: [''],
-      loanInterestRate: [''],
-      loanInsuranceRate: ['', Validators.required],
-      loanGuarantyRate: ['', Validators.required],
-      loanDuration: ['', Validators.required],
-      periodicity: ['', Validators.required]
+      simulationTarget: ['CAPITAL_TARGET', Validators.required],
+      personalDeposit: ['0'],
+      loanAmount: ['0'],
+      loanPayment: ['0'],
+      loanInterestRate: ['1.00'],
+      loanInsuranceRate: ['3.5', Validators.required],
+      loanGuarantyRate: ['1.5', Validators.required],
+      applicationFee: ['0', Validators.required],
+      loanDuration: ['15', Validators.required],
+      periodicity: ['MONTHLY', Validators.required]
     });
   }
 
   saveSimulation() {
     // Transforme les données du formulaire en instance de Projet
     const formData = this.simulationForm.value;
-    const simulation = new Simulation({
-      simulationDate: formData.simulationDate,
+    this.simulation = new Simulation({
       personalDeposit: formData.personalDeposit,
       loanAmount: formData.loanAmount,
       loanPayment: formData.loanPayment,
@@ -45,6 +51,15 @@ export class SimulationFormComponent implements OnInit {
     });
 
     // Sauvegarde l'instance du projet.
-    console.log(simulation);
+    console.log(this.simulation);
+    console.log(this.project);
+
+    this.simulationService.addSimulationToMortgageProject(this.project.id, this.simulation).subscribe(data => {
+      this.simulation = data;
+      this.project.simulations.push(this.simulation);
+      // Confirmation
+      // alert('Projet bien enregistré !');
+      this.submitNext.emit(this.simulation);
+    });
   }
 }

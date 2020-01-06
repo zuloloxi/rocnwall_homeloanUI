@@ -1,1 +1,77 @@
-<p>simulation-form works!</p>
+<form [formGroup]="simulationForm" (ngSubmit)="saveSimulation()" novalidate>
+
+    <div class="form-group">
+        <input type="radio" id="capitalTarget" formControlName="simulationTarget" value="CAPITAL" checked>
+        <label for="achat">Je veux définir mon budget d'achat</label>
+    </div>
+    <div class="form-group">
+        <input type="radio" id="paymentTarget" formControlName="simulationTarget" value="PAYMENT">
+        <label for="construction">Je veux calculer les mensualités de mon crédit</label>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Montant de l'apport</label>
+        <input formControlName="personalDeposit" class="form-control" type="number" step="100" min="0" placeholder="0">
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Montant de remboursement mensuel</label>
+        <input formControlName="loanPayment" class="form-control" type="number" step="100" min="0" placeholder="0">
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Montant d'emprunt envisagé</label>
+        <input formControlName="loanAmount" class="form-control" type="number" step="100" min="0" placeholder="0">
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Taux nominal annuel</label>
+        <input formControlName="loanInterestRate" class="form-control" type="number" step="0.01" min="0"
+            placeholder="0">
+    </div>
+
+    <!-- Taux d'assurance sur capital emprunté -->
+    <div class="form-group">
+        <label class="control-label">Taux d'assurance sur capital emprunté</label>
+        <input formControlName="loanInsuranceRate" class="form-control" type="number" step="0.01" min="0"
+            placeholder="0">
+    </div>
+
+    <!-- Taux de garantie (Crédit Logement) sur capital emprunté -->
+    <div class="form-group">
+        <label class="control-label">Taux de garantie (Crédit Logement) sur capital emprunté</label>
+        <input formControlName="loanGuarantyRate" class="form-control" type="number" step="0.01" min="0"
+            placeholder="0">
+    </div>
+
+    <!-- Frais de dossier -->
+    <div class="form-group">
+        <label class="control-label">Frais de dossier</label>
+        <input formControlName="applicationFee" class="form-control" type="number" step="100" min="0" placeholder="0">
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Durée de remboursement</label>
+        <input formControlName="loanDuration" class="form-control" type="number" step="1" min="0" placeholder="0">
+    </div>
+
+    <div class="form-group">
+        <input type="radio" id="mensuel" formControlName="periodicity" value="MONTHLY" checked>
+        <label for="mensuel">Mensuel</label>
+    </div>
+    <div class="form-group">
+        <input type="radio" id="trimestriel" formControlName="periodicity" value="QUARTERLY">
+        <label for="trimestriel">Trimestriel</label>
+    </div>
+    <div class="form-group">
+        <input type="radio" id="biannuel" formControlName="periodicity" value="BIANNUALLY">
+        <label for="biannuel">Biannuel</label>
+    </div>
+    <div class="form-group">
+        <input type="radio" id="annuel" formControlName="periodicity" value="ANNUALLY">
+        <label for="biannuel">Annuel</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!simulationForm.valid">Suivant</button>
+
+</form>

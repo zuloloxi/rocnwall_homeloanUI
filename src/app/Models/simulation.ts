@@ -1,5 +1,5 @@
 interface SimulationOptions {
-    simulationDate: Date;
+    simulationDate?: Date;
     personalDeposit: number;
     loanAmount: number;
     loanPayment: number;
@@ -21,15 +21,15 @@ interface SimulationOptions {
 }
 
 export enum CalculationMode {
-    CAPITAL_CIBLE,
-    ECHEANCE_CIBLE
+    CAPITAL_TARGET,
+    PAYMENT_TARGET
 }
 
 export enum Periodicity {
-    MENSUELLE,
-    TRIMESTRIELLE,
-    SEMESTRIELLE,
-    ANNUELLE
+    MONTHLY,
+    QUARTERLY,
+    BIANNUALLY,
+    ANNUALLY
 }
 
 export class Simulation {

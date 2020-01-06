@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core'
 import { MenuItem } from 'primeng/api';
 import { Project } from 'src/app/Models/mortgage-project';
+import { Simulation } from 'src/app/Models/simulation';
 
 @Component({
   selector: 'app-step-menu',
@@ -13,6 +14,7 @@ export class StepMenuComponent implements OnInit {
   items: MenuItem[];
   activeIndex: number;
   currentProject: Project;
+  currentSimulation: Simulation;
 
   constructor() { }
 
@@ -52,4 +54,9 @@ export class StepMenuComponent implements OnInit {
     this.activeIndex ++;
   }
 
+  loadSimulation(simulation: Simulation) {
+    this.currentSimulation = simulation;
+    console.log(this.currentSimulation);
+    this.activeIndex ++;
+  }
 }

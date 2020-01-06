@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BorrowerFormComponent } from './components/borrower-form/borrower-form.component';
 import { ProjectFormComponent } from './components/project-form/project-form.component';
 import { SimulationFormComponent } from './components/simulation-form/simulation-form.component';
+import { SimulationSummaryComponent } from './components/simulation-summary/simulation-summary.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SimulationFormComponent } from './components/simulation-form/simulation
     NavbarComponent,
     BorrowerFormComponent,
     ProjectFormComponent,
-    SimulationFormComponent
+    SimulationFormComponent,
+    SimulationSummaryComponent
   ],
   imports: [
     FormsModule,

@@ -1,4 +1,5 @@
 import { Borrower } from './borrower';
+import { Simulation } from './simulation';
 
 interface ProjectOptions {
     id?: string;
@@ -7,6 +8,7 @@ interface ProjectOptions {
     householdCharges?: number;
     maxLoanPayment?: number;
     borrowers?: Borrower[];
+    simulations?: Simulation[];
 }
 
 export class Project {
@@ -16,6 +18,7 @@ export class Project {
     householdCharges: number;
     maxLoanPayment: number;
     borrowers: Borrower[];
+    simulations: Simulation[];
 
 
     constructor(options: ProjectOptions) {
@@ -25,5 +28,6 @@ export class Project {
         this.householdCharges = options.householdCharges || 0;
         this.maxLoanPayment = options.maxLoanPayment || 0;
         this.borrowers = options.borrowers || [];
+        this.simulations = options.simulations || [];
     }
 }
