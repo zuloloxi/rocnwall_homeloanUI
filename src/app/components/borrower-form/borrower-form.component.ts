@@ -25,7 +25,7 @@ export class BorrowerFormComponent implements OnInit {
   ngOnInit() {
     this.borrowerForm = this.fb.group({
       dateOfBirth: ['1980-01-01', Validators.required],
-      netIncome: ['10']
+      netIncome: ['4000']
     });
     console.log('borrowerForm');
     console.log(this.project);
@@ -34,7 +34,7 @@ export class BorrowerFormComponent implements OnInit {
   saveBorrower() {
     // Transforme les données du formulaire en instance de Projet
     const formData = this.borrowerForm.value;
-    this.borrower= new Borrower({
+    this.borrower = new Borrower({
       dateOfBirth: formData.dateOfBirth,
       netIncome: formData.netIncome
     });

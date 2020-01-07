@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Project } from 'src/app/Models/mortgage-project';
 import { Simulation } from 'src/app/Models/simulation';
 
 @Component({
@@ -8,8 +9,8 @@ import { Simulation } from 'src/app/Models/simulation';
 })
 export class SimulationSummaryComponent implements OnInit {
 
+  @Input() project: Project;
   @Input() simulation: Simulation;
-  essai: number;
 
   constructor() { }
 

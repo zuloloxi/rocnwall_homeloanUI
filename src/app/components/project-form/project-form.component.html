@@ -21,14 +21,10 @@
     </div>
 
     <div class="form-group row">
-        <label class="control-label col-md-2">Charges du foyer</label>
+        <label class="control-label col-md-2">Charges mensuelles</label>
         <input formControlName="householdCharges" class="form-control col-md-9" type="number" step="100" min="0"
             placeholder="0">
     </div>
-    <div class="form-group row">
-        <label class="control-label col-md-2">Remboursement maximum</label>
-        <input formControlName="maxLoanPayment" class="form-control col-md-9" type="number" step="100" min="0"
-            placeholder="0">
-    </div>
+
     <button type="submit" class="btn btn-primary col-md-1" [disabled]="!projectForm.valid">>></button>
 </form>

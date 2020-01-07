@@ -1,16 +1,16 @@
 <form class=formulaire-emprunteur [formGroup]="borrowerForm" (ngSubmit)="saveBorrower()" novalidate>
     <div class="form-group row">
         <label class="control-label col-md-2">Date de naissance</label>
-        <input formControlName="dateOfBirth" class="col-md-2" type="date" id="dateOfBirth" min="1900-01-01"
+        <input formControlName="dateOfBirth" class="col-md-2" type="date" id="dateOfBirth" min="1940-01-01"
             max="2018-12-31">
     </div>
 
     <div class="form-group row">
-        <label class="control-label col-md-2">Revenu net</label>
+        <label class="control-label col-md-2">Revenus mensuels nets avant impôt</label>
         <input formControlName="netIncome" class="form-control col-md-9" type="number" step="100" min="0"
             placeholder="0">
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!borrowerForm.valid">Suivant</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!borrowerForm.valid">>></button>
 
 </form>
