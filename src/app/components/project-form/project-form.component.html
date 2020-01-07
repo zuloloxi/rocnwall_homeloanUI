@@ -4,13 +4,13 @@
     </div>
 
     <div class="row">
-        <div class="form-group type-projet col-md-3">
-            <input type="radio" id="achat" formControlName="projectType" value="PURCHASE" checked>
+        <div class="form-group type-projet col-md-2">
             <label for="achat">Achat</label>
+            <input type="radio" id="achat" formControlName="projectType" value="PURCHASE" checked>
         </div>
-        <div class="form-group type-projet col-md-3">
-            <input type="radio" id="construction" formControlName="projectType" value="CONSTRUCTION">
+        <div class="form-group type-projet col-md-2">
             <label for="construction">Construction</label>
+            <input type="radio" id="construction" formControlName="projectType" value="CONSTRUCTION">
         </div>
     </div>
 
@@ -30,7 +30,5 @@
         <input formControlName="maxLoanPayment" class="form-control col-md-9" type="number" step="100" min="0"
             placeholder="0">
     </div>
-    <div class="row col-md-12 justify-content-end">
-        <button type="submit" class="btn btn-primary col-md-1" [disabled]="!projectForm.valid">>></button>
-    </div>
+    <button type="submit" class="btn btn-primary col-md-1" [disabled]="!projectForm.valid">>></button>
 </form>

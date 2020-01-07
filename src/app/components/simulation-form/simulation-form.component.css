@@ -12,7 +12,8 @@ label {
   margin-right: 15px;
   line-height: 32px;
 }
-.type-projet input {
+
+.nature-simulation input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -29,10 +30,30 @@ label {
   top: 4px;
 }
 
-.type-projet input:checked {
+.nature-simulation input:checked {
   border: 6px solid black;
 }
 
+.periodicite input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  margin-right: 5px;
+
+  position: relative;
+  top: 4px;
+}
+
+.periodicite input:checked {
+  border: 6px solid black;
+}
 .btn {
     float:right;
 }

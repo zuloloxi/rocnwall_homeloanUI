@@ -1,27 +1,53 @@
 <form [formGroup]="simulationForm" (ngSubmit)="saveSimulation()" novalidate>
-
-    <div class="form-group">
-        <input type="radio" id="capitalTarget" formControlName="simulationTarget" value="CAPITAL" checked>
-        <label for="achat">Je veux définir mon budget d'achat</label>
+    <div class="row">
+        <h6 class="col-md-12">Modalités de calcul ?</h6>
     </div>
-    <div class="form-group">
-        <input type="radio" id="paymentTarget" formControlName="simulationTarget" value="PAYMENT">
-        <label for="construction">Je veux calculer les mensualités de mon crédit</label>
+    <div class="row">
+        <div class="form-group col-md-2 nature-simulation">
+            <label for="achat">Budget achat</label>
+            <input type="radio" id="capitalTarget" formControlName="simulationTarget" value="CAPITAL" checked>
+        </div>
+        <div class="form-group col-md-2 nature-simulation">
+            <label for="construction">Mensualité</label>
+            <input type="radio" id="paymentTarget" formControlName="simulationTarget" value="PAYMENT">
+        </div>
+    </div>
+
+    <div class="form-group" *ngIf="simulationForm.value.simulationTarget === 'PAYMENT'">
+        <label class="control-label">Montant de remboursement mensuel</label>
+        <input formControlName="loanPayment" class="form-control" type="number" step="100" min="0" placeholder="0">
+    </div>
+
+    <div class="form-group" *ngIf="simulationForm.value.simulationTarget === 'CAPITAL'">
+        <label class="control-label">Montant d'emprunt envisagé</label>
+        <input formControlName="loanAmount" class="form-control" type="number" step="100" min="0" placeholder="0">
+    </div>
+
+    <div class="row">
+        <h6 class="col-md-12">Périodicité de remboursement ?</h6>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-2 periodicite">
+            <label for="mensuel">Mensuel</label>
+            <input type="radio" id="mensuel" formControlName="periodicity" value="MONTHLY" checked>
+        </div>
+        <div class="form-group col-md-2 periodicite">
+            <label for="trimestriel">Trimestriel</label>
+            <input type="radio" id="trimestriel" formControlName="periodicity" value="QUARTERLY">
+        </div>
+        <div class="form-group col-md-2 periodicite">
+            <label for="biannuel">Biannuel</label>
+            <input type="radio" id="biannuel" formControlName="periodicity" value="BIANNUALLY">
+        </div>
+        <div class="form-group col-md-2 periodicite">
+            <label for="biannuel">Annuel</label>
+            <input type="radio" id="annuel" formControlName="periodicity" value="ANNUALLY">
+        </div>
     </div>
 
     <div class="form-group">
         <label class="control-label">Montant de l'apport</label>
         <input formControlName="personalDeposit" class="form-control" type="number" step="100" min="0" placeholder="0">
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">Montant de remboursement mensuel</label>
-        <input formControlName="loanPayment" class="form-control" type="number" step="100" min="0" placeholder="0">
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">Montant d'emprunt envisagé</label>
-        <input formControlName="loanAmount" class="form-control" type="number" step="100" min="0" placeholder="0">
     </div>
 
     <div class="form-group">
@@ -55,23 +81,7 @@
         <input formControlName="loanDuration" class="form-control" type="number" step="1" min="0" placeholder="0">
     </div>
 
-    <div class="form-group">
-        <input type="radio" id="mensuel" formControlName="periodicity" value="MONTHLY" checked>
-        <label for="mensuel">Mensuel</label>
-    </div>
-    <div class="form-group">
-        <input type="radio" id="trimestriel" formControlName="periodicity" value="QUARTERLY">
-        <label for="trimestriel">Trimestriel</label>
-    </div>
-    <div class="form-group">
-        <input type="radio" id="biannuel" formControlName="periodicity" value="BIANNUALLY">
-        <label for="biannuel">Biannuel</label>
-    </div>
-    <div class="form-group">
-        <input type="radio" id="annuel" formControlName="periodicity" value="ANNUALLY">
-        <label for="biannuel">Annuel</label>
-    </div>
+
 
     <button type="submit" class="btn btn-primary" [disabled]="!simulationForm.valid">Suivant</button>
-
 </form>

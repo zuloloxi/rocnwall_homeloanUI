@@ -23,7 +23,7 @@ export class SimulationFormComponent implements OnInit {
 
   ngOnInit() {
     this.simulationForm = this.fb.group({
-      simulationTarget: ['CAPITAL_TARGET', Validators.required],
+      simulationTarget: ['CAPITAL', Validators.required],
       personalDeposit: ['0'],
       loanAmount: ['0'],
       loanPayment: ['0'],
