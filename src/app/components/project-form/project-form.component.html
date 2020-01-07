@@ -1,9 +1,9 @@
 <form class=formulaire-projet [formGroup]="projectForm" (ngSubmit)="saveProject()" novalidate>
-    <div class="form-group row">
+    <div class="row">
         <h6 class="col-md-12">Quelle est la nature de votre projet ?</h6>
     </div>
 
-    <div class="row offset">
+    <div class="row">
         <div class="form-group type-projet col-md-3">
             <input type="radio" id="achat" formControlName="projectType" value="PURCHASE" checked>
             <label for="achat">Achat</label>

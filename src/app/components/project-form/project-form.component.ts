@@ -42,7 +42,7 @@ export class ProjectFormComponent implements OnInit {
     this.projectService.addMortgageProject(this.currentProject).subscribe(data => {
       // Récupération de l'Id du projet créé dans le backend
       this.currentProject.id = data.id;
-      console.log(this.currentProject)
+      console.log(this.currentProject);
       this.submitNext.emit(this.currentProject);
     });
   }

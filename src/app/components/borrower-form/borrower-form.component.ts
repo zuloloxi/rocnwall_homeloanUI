@@ -24,7 +24,7 @@ export class BorrowerFormComponent implements OnInit {
 
   ngOnInit() {
     this.borrowerForm = this.fb.group({
-      dateOfBirth: ['01/01/1980', Validators.required],
+      dateOfBirth: ['1980-01-01', Validators.required],
       netIncome: ['10']
     });
     console.log('borrowerForm');
