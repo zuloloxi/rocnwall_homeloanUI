@@ -20,9 +20,7 @@ export class BorrowerFormComponent implements OnInit {
 
   @Output() submitNext = new EventEmitter<Project>();
 
-  constructor(private fb: FormBuilder,
-    private router: Router,
-    private projectService: MortgageProjectService) { }
+  constructor(private fb: FormBuilder, private router: Router, private projectService: MortgageProjectService) { }
 
   ngOnInit() {
     this.borrowerForm = this.fb.group({
@@ -38,7 +36,7 @@ export class BorrowerFormComponent implements OnInit {
   newBorrower(): FormGroup {
     return this.fb.group({
       dateOfBirth: ['1980-01-01', Validators.required],
-      netIncome: ['10']
+      netIncome: ['4000']
     });
   }
 
@@ -56,23 +54,10 @@ export class BorrowerFormComponent implements OnInit {
 
   saveBorrower() {
     const formData = this.borrowerForm.value;
-    for (let borrower of formData.borrowers) {
-      // for (let i = 0; i < this.borrowerList.length; i++) {  //How to properly iterate here!!
-      console.log(borrower);
-      console.log('toto');
-    }
-    //   // Transforme les données du formulaire en instance de Projet
-    //   const formData = this.borrowerForm.value;
-    //   this.borrower = new Borrower({
-    //     dateOfBirth: formData.dateOfBirth,
-    //     netIncome: formData.netIncome
-    //   });
-    //   console.log(this.borrower);
     this.project.borrowers = formData.borrowers;
 
     // Sauvegarde l'instance du projet.
-
-    console.log(this.project);
+    // console.log(this.project);
 
     this.projectService.updateMortgageProject(this.project).subscribe(data => {
       this.project.maxLoanPayment = data.maxLoanPayment;

@@ -21,10 +21,9 @@ export class ProjectFormComponent implements OnInit {
 
   ngOnInit() {
     this.projectForm = this.fb.group({
-      referenceId: ['', Validators.required],
+      referenceId: [Math.random().toString(10), Validators.required],
       projectType: ['PURCHASE', Validators.required],
-      householdCharges: [''],
-      maxLoanPayment: ['']
+      householdCharges: ['100']
     });
   }
 
@@ -34,8 +33,7 @@ export class ProjectFormComponent implements OnInit {
     this.currentProject = new Project({
       referenceId: formData.referenceId,
       projectType: formData.projectType,
-      householdCharges: formData.householdCharges,
-      maxLoanPayment: formData.maxLoanPayment
+      householdCharges: formData.householdCharges
     });
 
     // Sauvegarde l'instance du projet.

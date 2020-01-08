@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MortgageProjectService } from 'src/app/services/mortgage-project.service';
 import { Simulation } from 'src/app/Models/simulation';
 import { Project } from 'src/app/Models/mortgage-project';
 import { MortgageSimulationService } from 'src/app/services/mortgage-simulation.service';
@@ -23,14 +22,14 @@ export class SimulationFormComponent implements OnInit {
 
   ngOnInit() {
     this.simulationForm = this.fb.group({
-      simulationTarget: ['CAPITAL', Validators.required],
-      personalDeposit: ['0'],
-      loanAmount: ['0'],
-      loanPayment: ['0'],
+      simulationTarget: ['PAYMENT', Validators.required],
+      personalDeposit: ['100000'],
+      loanAmount: ['200000'],
+      globalLoanPayment: ['1300'],
       loanInterestRate: ['1.00'],
-      loanInsuranceRate: ['3.5', Validators.required],
-      loanGuarantyRate: ['1.5', Validators.required],
-      applicationFee: ['0', Validators.required],
+      loanInsuranceRate: ['4.80', Validators.required],
+      loanGuarantyRate: ['1.25', Validators.required],
+      applicationFee: ['1000', Validators.required],
       loanDuration: ['15', Validators.required],
       periodicity: ['MONTHLY', Validators.required]
     });
@@ -42,10 +41,11 @@ export class SimulationFormComponent implements OnInit {
     this.simulation = new Simulation({
       personalDeposit: formData.personalDeposit,
       loanAmount: formData.loanAmount,
-      loanPayment: formData.loanPayment,
+      globalLoanPayment: formData.globalLoanPayment,
       loanInterestRate: formData.loanInterestRate,
       loanInsuranceRate: formData.loanInsuranceRate,
       loanGuarantyRate: formData.loanGuarantyRate,
+      applicationFee: formData.applicationFee,
       loanDuration: formData.loanDuration,
       periodicity: formData.periodicity
     });
