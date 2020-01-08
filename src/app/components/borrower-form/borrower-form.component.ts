@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MortgageProjectService } from 'src/app/services/mortgage-project.service';
 import { Borrower } from 'src/app/Models/borrower';
@@ -13,42 +13,54 @@ import { Project } from 'src/app/Models/mortgage-project';
 export class BorrowerFormComponent implements OnInit {
 
   borrowerForm: FormGroup;
+  public borrowerList: FormArray;
+
   @Input() project: Project;
   borrower: Borrower;
 
   @Output() submitNext = new EventEmitter<Project>();
 
-  constructor(private fb: FormBuilder,
-              private router: Router,
-              private projectService: MortgageProjectService) { }
+  constructor(private fb: FormBuilder, private router: Router, private projectService: MortgageProjectService) { }
 
   ngOnInit() {
     this.borrowerForm = this.fb.group({
+      borrowers: this.fb.array([this.newBorrower()])
+    });
+    this.borrowerList = this.borrowerForm.get('borrowers') as FormArray;
+  }
+
+  getBorrowers(): FormArray {
+    return this.borrowerForm.get('borrowers') as FormArray;
+  }
+
+  newBorrower(): FormGroup {
+    return this.fb.group({
       dateOfBirth: ['1980-01-01', Validators.required],
       netIncome: ['4000']
     });
-    console.log('borrowerForm');
-    console.log(this.project);
+  }
+
+  addBorrower() {
+    this.borrowerList.push(this.newBorrower());
+  }
+
+  removeBorrower(i: number) {
+    this.borrowerList.removeAt(i);
+  }
+
+  onSubmit() {
+    console.log(this.borrowerForm.value);
   }
 
   saveBorrower() {
-    // Transforme les données du formulaire en instance de Projet
     const formData = this.borrowerForm.value;
-    this.borrower = new Borrower({
-      dateOfBirth: formData.dateOfBirth,
-      netIncome: formData.netIncome
-    });
-    console.log(this.borrower);
-    this.project.borrowers.push(this.borrower);
+    this.project.borrowers = formData.borrowers;
 
     // Sauvegarde l'instance du projet.
-
-    console.log(this.project);
+    // console.log(this.project);
 
     this.projectService.updateMortgageProject(this.project).subscribe(data => {
       this.project.maxLoanPayment = data.maxLoanPayment;
-      // Confirmation
-      // alert('Projet bien enregistré !');
       this.submitNext.emit(this.project);
     });
   }
