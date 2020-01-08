@@ -4,81 +4,80 @@
     </div>
     <div class="row">
         <div class="form-group col-md-2 nature-simulation">
-            <label for="construction">Echéance cible ?</label>
+            <label for="construction">Echéance ?</label>
             <input type="radio" id="paymentTarget" formControlName="simulationTarget" value="PAYMENT" checked>
         </div>
         <div class="form-group col-md-2 nature-simulation">
-            <label for="achat">Capital cible ?</label>
+            <label for="achat">Capital ?</label>
             <input type="radio" id="capitalTarget" formControlName="simulationTarget" value="CAPITAL">
         </div>
     </div>
 
+    <div class="form-group" *ngIf="simulationForm.value.simulationTarget === 'PAYMENT'">
+        <label class="control-label">Capital souhaité (€)</label>
+        <input formControlName="loanAmount" class="form-control" type="number" step="100" min="0" placeholder="0" checked>
+    </div>
+
     <div class="form-group" *ngIf="simulationForm.value.simulationTarget === 'CAPITAL'">
-        <label class="control-label">Echéance globale souhaitée</label>
+        <label class="control-label">Echéance globale souhaitée (€)</label>
         <input formControlName="globalLoanPayment" class="form-control" type="number" step="100" min="0" placeholder="0">
     </div>
-
-    <div class="form-group" *ngIf="simulationForm.value.simulationTarget === 'PAYMENT'">
-        <label class="control-label">Capital souhaité</label>
-        <input formControlName="loanAmount" class="form-control" type="number" step="100" min="0" placeholder="0">
-    </div>
-
 
     <div class="row">
         <h6 class="col-md-12">Périodicité de remboursement ?</h6>
     </div>
     <div class="row">
         <div class="form-group col-md-2 periodicite">
-            <label for="mensuel">Mensuelle</label>
+            <label for="mensuel">mensuelle</label>
             <input type="radio" id="mensuel" formControlName="periodicity" value="MONTHLY" checked>
         </div>
         <div class="form-group col-md-2 periodicite">
-            <label for="trimestriel">Trimestrielle</label>
+            <label for="trimestriel">trimestrielle</label>
             <input type="radio" id="trimestriel" formControlName="periodicity" value="QUARTERLY">
         </div>
         <div class="form-group col-md-2 periodicite">
-            <label for="biannuel">Semestrielle</label>
+            <label for="biannuel">semestrielle</label>
             <input type="radio" id="biannuel" formControlName="periodicity" value="BIANNUALLY">
         </div>
         <div class="form-group col-md-2 periodicite">
-            <label for="biannuel">Annuelle</label>
+            <label for="biannuel">annuelle</label>
             <input type="radio" id="annuel" formControlName="periodicity" value="ANNUALLY">
         </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label">Montant de l'apport personnel</label>
+        <label class="control-label">Apport personnel (€)</label>
         <input formControlName="personalDeposit" class="form-control" type="number" step="100" min="0" placeholder="0">
     </div>
 
     <div class="form-group">
-        <label class="control-label">Taux nominal annuel</label>
+        <label class="control-label">Taux d'intérêt nominal annuel (%)</label>
         <input formControlName="loanInterestRate" class="form-control" type="number" step="0.01" min="0"
             placeholder="0">
     </div>
 
     <!-- Taux d'assurance sur capital emprunté -->
     <div class="form-group">
-        <label class="control-label">Taux d'assurance sur capital emprunté</label>
+        <label class="control-label">Taux d'assurance sur capital (%)</label>
         <input formControlName="loanInsuranceRate" class="form-control" type="number" step="0.01" min="0"
             placeholder="0">
     </div>
 
     <!-- Taux de garantie (Crédit Logement) sur capital emprunté -->
     <div class="form-group">
-        <label class="control-label">Taux de garantie sur capital emprunté</label>
+        <label class="control-label">Taux de garantie sur capital (%)</label>
         <input formControlName="loanGuarantyRate" class="form-control" type="number" step="0.01" min="0"
             placeholder="0">
     </div>
 
     <!-- Frais de dossier -->
     <div class="form-group">
-        <label class="control-label">Frais de dossier</label>
+        <label class="control-label">Frais de dossier (€)</label>
         <input formControlName="applicationFee" class="form-control" type="number" step="100" min="0" placeholder="0">
     </div>
 
     <div class="form-group">
-        <label class="control-label">Durée de remboursement</label>
+        <label class="control-label">Durée de remboursement (années)</label>
         <input formControlName="loanDuration" class="form-control" type="number" step="1" min="0" placeholder="0">
     </div>
 

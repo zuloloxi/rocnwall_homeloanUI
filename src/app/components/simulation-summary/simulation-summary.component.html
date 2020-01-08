@@ -10,10 +10,8 @@
 
         <p id="mensualiteMax" class="libelle">
             <!-- Votre échéance globale maximale conseillée est de <strong>{{project.maxLoanPayment}}</strong> €. -->
-            Votre échéance globale maximale conseillée est de <strong>{{simulation.globalLoanPayment}}</strong> €.
+            Votre échéance globale maximale conseillée est de <strong>? (valeur dans le mortgageProject)</strong> €.
         </p>
-
-        <div class="sh-resutat-calcule"></div>
 
         <div class="sh-simu-meteo">
             <div class="simu-OK banner">
@@ -55,163 +53,59 @@
         <ul class="list-sh-detail">
             <li class="new-section show-first">
                 <span>Apport personnel : </span>
-                <span class="set-loanAmount"><strong>{{simulation.personalDeposit}}</strong> €</span>
+                <span class="set-loanAmount"><strong>{{simulation.personalDeposit.toFixed(0)}}</strong> €</span>
             </li>
+
             <li class="new-section show-first">
                 <span>Montant à emprunter : </span>
                 <span class="set-loanAmount"><strong>{{simulation.loanAmount.toFixed(0)}}</strong> €</span>
             </li>
+
             <li>
                 <span>Coût du crédit : </span>
                 <span class="set-totalLoanCostWithInsurance"><strong>{{simulation.loanCost.toFixed(0)}}</strong> €</span>
             </li>
-            <li class="new-section without-point">
-                <ul>
+
                     <li>
-                        <span>Intérêts :</span>
-                        <div class="help-text-container">
-                            <p class="help-text">
-                                <span class="circle-container">
-                                    <span class="circle circle-small">?</span>
-                                </span>
-                            </p>
-                            <div class="help-text-popup hidden">
-                                <div class="arrow"></div>
-                                <div class="popover-content">
-                                    <p>Montant total des intérêts hors assurance et garanties obligatoires.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="set-interestCost"><strong>{{simulation.interestCost.toFixed(0)}}</strong> €</span>
+                        <span>>>> Intérêts :</span>
+                        <span class="set-interestCost">{{simulation.interestCost.toFixed(0)}} €</span>
                     </li>
+
                     <li>
-                        <span>Assurance :</span>
-                        <div class="help-text-container">
-                            <p class="help-text">
-                                <span class="circle-container">
-                                    <span class="circle circle-small">?</span>
-                                </span>
-                            </p>
-                            <div class="help-text-popup hidden">
-                                <div class="arrow"></div>
-                                <div class="popover-content">
-                                    <p>Montant total de l'assurance due pendant toute la durée du crédit.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="set-insuranceCost"><strong>{{simulation.loanInsuranceCost}}</strong> €</span>
-                        <p class="assmois pull-right"></p>
+                        <span>>>> Assurance :</span>
+                        <span class="set-insuranceCost">{{simulation.insuranceCost.toFixed(0)}} €</span>
                     </li>
+
                     <li>
-                        <span>Frais de dossier : </span>
-                        <span class="set-initialApplicationFees"><strong>{{simulation.applicationFee}}</strong> €</span>
+                        <span>>>> Frais de dossier : </span>
+                        <span class="set-initialApplicationFees">{{simulation.applicationFee.toFixed(0)}} €</span>
                     </li>
+
                     <li>
-                        <span>Garantie Crédit Logement :</span>
-                        <div class="help-text-container">
-                            <p class="help-text">
-                                <span class="circle-container">
-                                    <span class="circle circle-small">?</span>
-                                </span>
-                            </p>
-                            <div class="help-text-popup hidden">
-                                <div class="arrow"></div>
-                                <div class="popover-content">
-                                    <p> Frais de garantie Crédit Logement.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="set-initialGuaranteeFees"><strong>{{simulation.loanGuaranty}}</strong> €</span>
+                        <span>>>> Garantie Crédit Logement :</span>
+                        <span class="set-initialGuaranteeFees">{{simulation.loanGuaranty.toFixed(0)}} €</span>
                     </li>
-                    <li class="without-point">
-                        <p class="js-show-credit-details pull-right" data-shown="0">
-                            Afficher le détail
-                        </p>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <span>Taux nominal du prêt :</span>
-                <div class="help-text-container">
-                    <p class="help-text">
-                        <span class="circle-container">
-                            <span class="circle circle-small">?</span>
-                        </span>
-                    </p>
-                    <div class="help-text-popup hidden">
-                        <div class="arrow"></div>
-                        <div class="popover-content">
-                            <p>Taux d’intérêt nominal annuel fixe indicatif hors assurance.</p>
-                        </div>
-                    </div>
-                </div>
-                <span class="set-initialNominalRate"><strong>{{simulation.loanInterestRate}}</strong> %</span>
-            </li>
+
             <li title="Taux Annuel Effectif Global (TAEG)">
-                <span>TAEG :</span>
-                <div class="help-text-container">
-                    <p class="help-text">
-                        <span class="circle-container">
-                            <span class="circle circle-small">?</span>
-                        </span>
-                    </p>
-                    <div class="help-text-popup hidden">
-                        <div class="arrow"></div>
-                        <div class="popover-content">
-                            <p> Taux Annuel Effectif Global (TAEG).</p>
-                        </div>
-                    </div>
-                </div>
-                <span class="set-annualPercentageRateOfCharge"><strong>{{simulation.effectiveInterestRate}}</strong> %</span>
+                <span>Taux Annuel Effectif Global (TAEG) :</span>
+                <span class="set-annualPercentageRateOfCharge"><strong>{{simulation.effectiveInterestRate.toFixed(2)}}</strong> %</span>
             </li>
 
-            <li
-                title="Taux Annuel Effectif d’Assurance (TAEA). Le montant total dû par au titre de l’assurance proposée par le prêteur sur la durée totale du crédit est exprimé en euros pour un taux annuel effectif de l’assurance (TAEA).">
-                <span>TAEA :</span>
-                <div class="help-text-container">
-                    <p class="help-text">
-                        <span class="circle-container">
-                            <span class="circle circle-small">?</span>
-                        </span>
-                    </p>
-                    <div class="help-text-popup hidden" style="min-width : 476px;">
-                        <div class="arrow"></div>
-                        <div class="popover-content">
-                            <p>Taux Annuel Effectif d’Assurance (TAEA). Le montant total dû par l’emprunteur au titre de
-                                l’assurance
-                                proposée par le prêteur sur la durée totale du crédit est exprimé en euros pour un taux
-                                annuel
-                                effectif de l’assurance (TAEA).</p>
-                        </div>
-                    </div>
-                </div>
-                <span class="set-insuranceAnnualPercentageRate"><strong>{{simulation.insuranceImpactOnInterestRate}}</strong> %</span>
+            <li>
+                <span>>>> Taux Annuel d’Intérêt Nominal :</span>
+                <span class="set-initialNominalRate">{{simulation.loanInterestRate.toFixed(2)}} %</span>
             </li>
-            <!--<li>
-            <span>Taux de l'assurance</span>
-            <span class="set-initialGlobalInsuranceRate"></span>
-        </li>-->
-            <li title="Taux Annuel Effectif des frais (TAEF).">
-                <span>TAEF :</span>
-                <div class="help-text-container">
-                    <p class="help-text">
-                        <span class="circle-container">
-                            <span class="circle circle-small">?</span>
-                        </span>
-                    </p>
-                    <div class="help-text-popup hidden" style="min-width : 476px;">
-                        <div class="arrow"></div>
-                        <div class="popover-content">
-                            <p>Taux Annuel Effectif des frais (TAEF). Le montant total dû par l’emprunteur au titre des
-                                frais (dossier, garantie)
-                                proposée par le prêteur sur la durée totale du crédit est exprimé en euros pour un taux
-                                annuel
-                                effectif des frais (TAEF).</p>
-                        </div>
-                    </div>
-                </div>
-                <span class="set-feesAnnualPercentageRate"><strong>{{simulation.feesImpactOnInterestRate}}</strong> %</span>
+
+            <li>
+                <span>>>> Taux Annuel Effectif d’Assurance (TAEA) :</span>
+                <span class="set-insuranceAnnualPercentageRate">{{simulation.insuranceImpactOnInterestRate.toFixed(2)}} %</span>
             </li>
+
+            <li>
+                <span>>>> Taux Annuel Effectif des Frais (TAEF) :</span>
+                <span class="set-feesAnnualPercentageRate">{{simulation.feesImpactOnInterestRate.toFixed(2)}} %</span>
+            </li>
+
         </ul>
     </div>>
 </div>

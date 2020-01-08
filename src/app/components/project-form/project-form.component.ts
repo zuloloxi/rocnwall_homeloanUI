@@ -23,7 +23,7 @@ export class ProjectFormComponent implements OnInit {
     this.projectForm = this.fb.group({
       referenceId: [Math.random().toString(10), Validators.required],
       projectType: ['PURCHASE', Validators.required],
-      householdCharges: ['66']
+      householdCharges: ['100']
     });
   }
 

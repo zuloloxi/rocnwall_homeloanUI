@@ -11,7 +11,7 @@ interface SimulationOptions {
     loanPayment?: number;
     loanCost?: number;
     interestCost?: number;
-    loanInsuranceCost?: number;
+    insuranceCost?: number;
     applicationFee?: number;
     loanGuaranty?: number;
     effectiveInterestRate?: number;
@@ -45,7 +45,7 @@ export class Simulation {
     loanPayment: number;
     loanCost: number;
     interestCost: number;
-    loanInsuranceCost: number;
+    insuranceCost: number;
     applicationFee: number;
     loanGuaranty: number;
     effectiveInterestRate: number;
@@ -66,7 +66,7 @@ export class Simulation {
         this.loanPayment = options.loanPayment || 0;
         this.loanCost = options.loanCost || 0;
         this.interestCost = options.interestCost || 0;
-        this.loanInsuranceCost = options.loanInsuranceCost || 0;
+        this.insuranceCost = options.insuranceCost || 0;
         this.applicationFee = options.applicationFee || 0;
         this.loanGuaranty = options.loanGuaranty || 0;
         this.effectiveInterestRate = options.effectiveInterestRate || 0;
