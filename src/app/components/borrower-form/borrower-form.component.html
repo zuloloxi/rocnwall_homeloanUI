@@ -1,16 +1,29 @@
 <form class=formulaire-emprunteur [formGroup]="borrowerForm" (ngSubmit)="saveBorrower()" novalidate>
-    <div class="form-group row">
-        <label class="control-label col-md-2">Date de naissance</label>
-        <input formControlName="dateOfBirth" class="col-md-2" type="date" id="dateOfBirth" min="1900-01-01"
-            max="2018-12-31">
+    <div formArrayName="borrowers" *ngFor="let borrowers of borrowerList.controls; let i=index">
+        <div [formGroupName]="i">
+            <div class="row">
+                <h5>Emprunteur {{i+1}}</h5>
+                <button class="btn btn-default addBorrower" type="button" (click)="addBorrower()">
+                    <i class="far fa-plus-square fa-lg align-top"></i>
+                </button>
+
+                <button class="btn btn-default removeBorrower" *ngIf="i" (click)="removeBorrower(i)">
+                    <i class="far fa-minus-square fa-lg align-top"></i>
+                </button>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-2">Date de naissance</label>
+                <input formControlName="dateOfBirth" class="col-md-2" type="date" id="dateOfBirth" min="1900-01-01"
+                    max="2018-12-31">
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-2">Revenu net</label>
+                <input formControlName="netIncome" class="form-control col-md-9" type="number" step="100" min="0"
+                    placeholder="0">
+            </div>
+        </div>
     </div>
 
-    <div class="form-group row">
-        <label class="control-label col-md-2">Revenu net</label>
-        <input formControlName="netIncome" class="form-control col-md-9" type="number" step="100" min="0"
-            placeholder="0">
-    </div>
-
-    <button type="submit" class="btn btn-primary" [disabled]="!borrowerForm.valid">Suivant</button>
-
+    <button type="submit" class="btn btn-primary submitForm" [disabled]="!borrowerForm.valid">>></button>
 </form>
