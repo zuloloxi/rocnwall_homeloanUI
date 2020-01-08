@@ -45,7 +45,8 @@ export class BorrowerFormComponent implements OnInit {
 
     console.log(this.project);
 
-    this.projectService.updateMortgageProject(this.project).subscribe( () => {
+    this.projectService.updateMortgageProject(this.project).subscribe(data => {
+      this.project.maxLoanPayment = data.maxLoanPayment;
       // Confirmation
       // alert('Projet bien enregistré !');
       this.submitNext.emit(this.project);
