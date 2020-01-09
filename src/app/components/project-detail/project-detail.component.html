@@ -3,4 +3,4 @@
         <li class="breadcrumb-item"><a routerLink="/projects">Retour à la liste</a></li>
     </ol>
 </nav>
-<app-simulation-summary [project]="project" [simulation]="mortgageSimulation"></app-simulation-summary>
+<app-simulation-summary *ngIf="doesDataExist === true"  [project]="project" [simulation]="mortgageSimulation"></app-simulation-summary>

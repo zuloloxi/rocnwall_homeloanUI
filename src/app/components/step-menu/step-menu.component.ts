@@ -3,6 +3,10 @@ import { ViewEncapsulation } from '@angular/core'
 import { MenuItem } from 'primeng/api';
 import { Project } from 'src/app/Models/mortgage-project';
 import { Simulation } from 'src/app/Models/simulation';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { MortgageSimulationService } from 'src/app/services/mortgage-simulation.service';
+import { MortgageProjectService } from 'src/app/services/mortgage-project.service';
 
 @Component({
   selector: 'app-step-menu',
@@ -17,11 +21,21 @@ export class StepMenuComponent implements OnInit {
   currentSimulation: Simulation;
   isSavedProject: boolean;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private mortgageProjectService: MortgageProjectService) { }
 
   ngOnInit() {
+    const projectId = this.route.snapshot.paramMap.get('id');
+    if (projectId) {
+      const obsProject: Observable<Project> = this.mortgageProjectService.getMortgageProject(projectId);
+      obsProject.subscribe(data => {
+        this.currentProject= data;
+      });
+      this.isSavedProject = true;
+    } else {
+      this.isSavedProject = false;
+    }
+
     this.activeIndex = 0;
-    this.isSavedProject = false;
 
     this.items = [{
       label: 'Projet',
@@ -53,7 +67,7 @@ export class StepMenuComponent implements OnInit {
   incrementProjectStep(project: Project) {
     this.currentProject = project;
     this.isSavedProject = true;
-    this.activeIndex ++;
+    this.activeIndex++;
   }
 
   decrementProjectStep(project: Project) {
@@ -63,8 +77,7 @@ export class StepMenuComponent implements OnInit {
 
   incrementSimulationStep(simulation: Simulation) {
     this.currentSimulation = simulation;
-    console.log(this.currentSimulation);
-    this.activeIndex ++;
+    this.activeIndex++;
   }
 
   decrementSimulationStep(simulation: Simulation) {

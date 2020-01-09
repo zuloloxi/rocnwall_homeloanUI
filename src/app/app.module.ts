@@ -11,7 +11,6 @@ import { StepsModule } from 'primeng/steps';
 import { TableModule } from 'primeng/table';
 
 
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BorrowerFormComponent } from './components/borrower-form/borrower-form.component';
@@ -26,7 +25,6 @@ import { ProjectDetailComponent } from './components/project-detail/project-deta
   declarations: [
     AppComponent,
     StepMenuComponent,
-    NavbarComponent,
     BorrowerFormComponent,
     ProjectFormComponent,
     SimulationFormComponent,
