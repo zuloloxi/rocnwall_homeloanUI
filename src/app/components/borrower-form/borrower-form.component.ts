@@ -25,7 +25,7 @@ export class BorrowerFormComponent implements OnInit {
 
   ngOnInit() {
     this.borrowerForm = this.fb.group({
-      //borrowers: this.fb.array([this.newBorrower('1980-01-01', '4000')])
+      // borrowers: this.fb.array([this.newBorrower('1980-01-01', '4000')])
       borrowers: this.fb.array([])
     });
     this.borrowerList = this.borrowerForm.get('borrowers') as FormArray;
@@ -37,6 +37,9 @@ export class BorrowerFormComponent implements OnInit {
       }
     }
   }
+
+    // Convenience getter for easy access to form fields
+    get f() { return this.borrowerForm.controls; }
 
   comeBack() {
     this.submitPrevious.emit(this.project);

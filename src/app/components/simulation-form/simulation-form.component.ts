@@ -25,25 +25,25 @@ export class SimulationFormComponent implements OnInit {
   ngOnInit() {
     this.simulationForm = this.fb.group({
       simulationTarget: ['PAYMENT_TARGET', Validators.required],
-      personalDeposit: ['', Validators.required],
+      personalDeposit: ['0', Validators.required],
       loanAmount: [''],
       loanPayment: [''],
-      loanInterestRate: ['1.00', Validators.required],
-      loanInsuranceRate: ['4.80', Validators.required],
-      loanGuarantyRate: ['1.25', Validators.required],
-      applicationFee: ['1000', Validators.required],
-      loanDuration: ['15', Validators.required],
+      loanInterestRate: ['1.00', Validators.compose([Validators.required, Validators.min(0), Validators.max(5)])],
+      loanInsuranceRate: ['4.80', Validators.compose([Validators.required, Validators.min(0), Validators.max(5)])],
+      loanGuarantyRate: ['1.25', Validators.compose([Validators.required, Validators.min(0), Validators.max(5)])],
+      applicationFee: ['1000', Validators.compose([Validators.required, Validators.min(0), Validators.max(10000)])],
+      loanDuration: ['15', Validators.compose([Validators.required, Validators.min(1), Validators.max(30)])],
       periodicity: ['MONTHLY', Validators.required],
       globalLoanPayment: ['']
     });
   }
 
+    // Convenience getter for easy access to form fields
+    get f() { return this.simulationForm.controls; }
+
   comeBack() {
     this.submitPrevious.emit(this.project);
   }
-
-  // Convenience getter for easy access to form fields
-  get f() { return this.simulationForm.controls; }
 
   saveSimulation() {
     // Transforme les données du formulaire en instance de Projet
