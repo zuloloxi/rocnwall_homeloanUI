@@ -1,0 +1,21 @@
+<div class="row">
+    <nav class="navbar fixed-top navbar-light bg-light">
+        <a class="navbar-brand" routerLink="projects">
+            <img  src="./assets/house-logo.png" width="100">
+        </a>
+        <button type="button" class="btn btn-outline-primary" routerLink="/simulation/new">
+            <i class="fas fa-home"> Nouveau</i>
+        </button>
+        <button type="button" class="btn btn-outline-primary" routerLink="/projects">
+            <i class="fas fa-table"> Liste</i>
+        </button>
+        <button type="button" class="btn btn-outline-primary">
+            <i class="fas fa-table"> Statistiques</i>
+        </button>
+        <!-- <p-tabMenu [model]="items" [activeItem]="items[0]" ]></p-tabMenu> -->
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Projet" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filtrer</button>
+        </form>
+    </nav>
+</div>

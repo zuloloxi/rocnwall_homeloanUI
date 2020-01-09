@@ -33,9 +33,11 @@ export class ProjectDetailComponent implements OnInit {
     obsProject.subscribe(data => {
       this.project = data;
       const obsSimulation: Observable<Simulation> = this.mortgageSimulationService.getSimulation(projectId);
-      obsSimulation.subscribe(data => {
-        this.mortgageSimulation = data;
+      obsSimulation.subscribe(otherData => {
+        this.mortgageSimulation = otherData;
         this.doesDataExist = true;
+        console.log(this.project);
+        console.log(this.mortgageSimulation);
       });
     });
 

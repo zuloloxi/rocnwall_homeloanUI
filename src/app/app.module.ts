@@ -9,7 +9,7 @@ import { StepMenuComponent } from './components/step-menu/step-menu.component';
 import { MenuModule } from 'primeng/menu';
 import { StepsModule } from 'primeng/steps';
 import { TableModule } from 'primeng/table';
-
+import { TabMenuModule, TabMenu } from 'primeng/tabmenu';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,7 +19,7 @@ import { SimulationFormComponent } from './components/simulation-form/simulation
 import { SimulationSummaryComponent } from './components/simulation-summary/simulation-summary.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
-
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import { ProjectDetailComponent } from './components/project-detail/project-deta
     SimulationFormComponent,
     SimulationSummaryComponent,
     ProjectListComponent,
-    ProjectDetailComponent
+    ProjectDetailComponent,
+    MenuComponent
   ],
   imports: [
     FormsModule,
@@ -41,6 +42,7 @@ import { ProjectDetailComponent } from './components/project-detail/project-deta
     MenuModule,
     StepsModule,
     TableModule,
+    TabMenuModule,
     HttpClientModule
   ],
   providers: [
