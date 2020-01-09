@@ -37,6 +37,8 @@ export class ProjectFormComponent implements OnInit {
       });
     }
   }
+  // Convenience getter for easy access to form fields
+  get f() { return this.projectForm.controls; }
 
   saveProject() {
     // Transforme les données du formulaire en instance de Projet

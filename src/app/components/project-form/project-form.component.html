@@ -18,12 +18,18 @@
         <label class="control-label col-md-2">Référence</label>
         <input formControlName="referenceId" type="text" class="form-control col-md-9"
             placeholder="Veuillez saisir la référence de votre projet">
+        <span *ngIf="f.referenceId.invalid && f.referenceId.errors.required">
+            La référence du projet est requise.
+        </span>
     </div>
 
     <div class="form-group row">
         <label class="control-label col-md-2">Charges (€) / mois</label>
         <input formControlName="householdCharges" class="form-control col-md-9" type="number" step="100" min="0"
             placeholder="0">
+        <span *ngIf="f.householdCharges.invalid && f.householdCharges.errors.required">
+            Les charges totales mensuelles des emprunteurs sont requises.
+        </span>
     </div>
 
     <button type="submit" class="btn btn-primary col-md-1 next" [disabled]="!projectForm.valid">>></button>
