@@ -21,6 +21,9 @@
         <span *ngIf="f.referenceId.invalid && f.referenceId.errors.required">
             La référence du projet est requise.
         </span>
+        <div *ngIf="f.referenceId.errors?.minLength && f.referenceId.errors?.maxLength">
+            La référence du projet doit comprendre entre 5 et 30 caractères.
+        </div>
     </div>
 
     <div class="form-group row">

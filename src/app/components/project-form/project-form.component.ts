@@ -25,7 +25,8 @@ export class ProjectFormComponent implements OnInit {
   ngOnInit() {
     if (!this.isSavedProject) {
       this.projectForm = this.fb.group({
-        referenceId: [Math.random().toString(10), Validators.required],
+        referenceId: [Math.random().toString(10),
+                        Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(30)])],
         projectType: ['PURCHASE', Validators.required],
         householdCharges: ['100']
       });

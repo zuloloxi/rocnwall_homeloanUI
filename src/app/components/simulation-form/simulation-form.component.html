@@ -1,7 +1,7 @@
 <form [formGroup]="simulationForm" (ngSubmit)="saveSimulation()" novalidate>
 
     <div class="row">
-        <h6 class="col-md-12">Options de calcul ?</h6>
+        <h6 class="col-md-12">Options de calcul</h6>
     </div>
 
 
@@ -27,8 +27,16 @@
         <input formControlName="loanPayment" class="form-control" type="number" step="100" min="0" placeholder="0">
     </div>
 
+    <!-- <span *ngIf="f.loanAmount == null && f.loanPayment == null">
+        Veuillez renseigner votre souhait de capital ou d'échéance.
+    </span> -->
+
+    <!-- <span *ngIf="f.loanAmount.value !== 0 && f.loanPayment.value !== 0">
+        Le capital et l'échéance ne peuvent pas être simultanément souhaités !!! :-)
+    </span> -->
+
     <div class="row">
-        <h6 class="col-md-12">Périodicité de remboursement ?</h6>
+        <h6 class="col-md-12">Périodicité de remboursement</h6>
     </div>
     <div class="row">
         <div class="form-group col-md-2 periodicite">
@@ -66,7 +74,7 @@
             Le taux d'intérêt nominal est requis.
         </span>
         <div *ngIf="f.loanInterestRate.errors?.min || f.loanInterestRate.errors?.max">
-            Le taux d'intérêt nominal doit être compris entre 0% et 5%
+            Le taux d'intérêt nominal doit être compris entre 0% et 5%.
         </div>
     </div>
 
@@ -78,8 +86,8 @@
             Le taux d'assurance est requis.
         </span>
         <div *ngIf="f.loanInsuranceRate.errors?.min || f.loanInsuranceRate.errors?.max">
-            Le taux d'assurance doit être compris entre 0% et 5%
-          </div>
+            Le taux d'assurance doit être compris entre 0% et 5%.
+        </div>
     </div>
 
     <!-- Taux de garantie (Crédit Logement) sur capital emprunté -->
@@ -90,8 +98,8 @@
             Le taux de garantie est requis.
         </span>
         <div *ngIf="f.loanGuarantyRate.errors?.min || f.loanGuarantyRate.errors?.max">
-            Le taux de garantie doit être compris entre 0% et 5%
-          </div>
+            Le taux de garantie doit être compris entre 0% et 5%.
+        </div>
     </div>
 
     <!-- Frais de dossier -->
@@ -103,7 +111,7 @@
         </span>
         <div *ngIf="f.applicationFee.errors?.min || f.applicationFee.errors?.max">
             Les frais de dossier doivent être compris entre 0 € et 10 000 €.
-          </div>
+        </div>
     </div>
 
     <div class="form-group">
@@ -114,7 +122,7 @@
         </span>
         <div *ngIf="f.loanDuration.errors?.min || f.loanDuration.errors?.max">
             La durée doit être comprise entre 1 an et 30 ans.
-          </div>
+        </div>
     </div>
 
 
