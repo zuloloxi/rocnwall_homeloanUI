@@ -15,11 +15,14 @@ export class StepMenuComponent implements OnInit {
   activeIndex: number;
   currentProject: Project;
   currentSimulation: Simulation;
+  isSavedProject: boolean;
 
   constructor() { }
 
   ngOnInit() {
     this.activeIndex = 0;
+    this.isSavedProject = false;
+
     this.items = [{
       label: 'Projet',
       command: (event: any) => {
@@ -27,7 +30,7 @@ export class StepMenuComponent implements OnInit {
       }
     },
     {
-      label: 'Emprunteur',
+      label: 'Emprunteurs',
       command: (event: any) => {
         this.activeIndex = 1;
       }
@@ -47,16 +50,26 @@ export class StepMenuComponent implements OnInit {
     ];
   }
 
-  incrementStep(project: Project) {
-    console.log('Event reçu');
+  incrementProjectStep(project: Project) {
     this.currentProject = project;
-    console.log(this.currentProject);
+    this.isSavedProject = true;
     this.activeIndex ++;
   }
 
-  loadSimulation(simulation: Simulation) {
+  decrementProjectStep(project: Project) {
+    this.currentProject = project;
+    this.activeIndex--;
+  }
+
+  incrementSimulationStep(simulation: Simulation) {
     this.currentSimulation = simulation;
     console.log(this.currentSimulation);
     this.activeIndex ++;
   }
+
+  decrementSimulationStep(simulation: Simulation) {
+    this.currentSimulation = simulation;
+    this.activeIndex--;
+  }
+
 }

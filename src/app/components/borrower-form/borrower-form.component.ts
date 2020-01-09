@@ -16,40 +16,53 @@ export class BorrowerFormComponent implements OnInit {
   public borrowerList: FormArray;
 
   @Input() project: Project;
-  borrower: Borrower;
+  @Input() isSavedProject: boolean;
 
+  @Output() submitPrevious = new EventEmitter<any>();
   @Output() submitNext = new EventEmitter<Project>();
 
   constructor(private fb: FormBuilder, private router: Router, private projectService: MortgageProjectService) { }
 
   ngOnInit() {
     this.borrowerForm = this.fb.group({
-      borrowers: this.fb.array([this.newBorrower()])
+      //borrowers: this.fb.array([this.newBorrower('1980-01-01', '4000')])
+      borrowers: this.fb.array([])
     });
     this.borrowerList = this.borrowerForm.get('borrowers') as FormArray;
+    if (this.project.borrowers.length === 0) {
+      this.addNewBorrower();
+    } else {
+      for (const borrower of this.project.borrowers) {
+        this.addBorrower(borrower.dateOfBirth.toString(), borrower.netIncome.toString());
+      }
+    }
+  }
+
+  comeBack() {
+    this.submitPrevious.emit(this.project);
   }
 
   getBorrowers(): FormArray {
     return this.borrowerForm.get('borrowers') as FormArray;
   }
 
-  newBorrower(): FormGroup {
+  newBorrower(initDate: string, initIncome: string): FormGroup {
     return this.fb.group({
-      dateOfBirth: ['1980-01-01', Validators.required],
-      netIncome: ['4000']
+      dateOfBirth: [initDate, Validators.required],
+      netIncome: [initIncome]
     });
   }
 
-  addBorrower() {
-    this.borrowerList.push(this.newBorrower());
+  addNewBorrower() {
+    this.addBorrower('1980-01-01', '4000');
+  }
+
+  addBorrower(initDate: string, initIncome: string) {
+    this.borrowerList.push(this.newBorrower(initDate, initIncome));
   }
 
   removeBorrower(i: number) {
     this.borrowerList.removeAt(i);
-  }
-
-  onSubmit() {
-    console.log(this.borrowerForm.value);
   }
 
   saveBorrower() {
@@ -57,8 +70,6 @@ export class BorrowerFormComponent implements OnInit {
     this.project.borrowers = formData.borrowers;
 
     // Sauvegarde l'instance du projet.
-    // console.log(this.project);
-
     this.projectService.updateMortgageProject(this.project).subscribe(data => {
       this.project.maxLoanPayment = data.maxLoanPayment;
       this.submitNext.emit(this.project);

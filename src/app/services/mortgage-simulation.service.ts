@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Simulation } from '../Models/simulation';
 import { Project } from '../Models/mortgage-project';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class MortgageSimulationService {
   };
 
   constructor(private http: HttpClient,
-              @Inject('BACKEND_URL') private baseUrl: string) { }
+    @Inject('BACKEND_URL') private baseUrl: string) { }
 
   // POST : add a new simulationto the project
   addSimulationToMortgageProject(mortageProjectId: string, simulationDTO: Simulation): Observable<Simulation> {
@@ -21,8 +22,13 @@ export class MortgageSimulationService {
       simulationDTO, this.httpOptions);
   }
 
-  updateMortgageProject(mortgageProjectDTO: Project): Observable<Project> {
-    console.log(mortgageProjectDTO);
-    return this.http.put<Project>(`${this.baseUrl}/mortgageProjects/` + mortgageProjectDTO.id, mortgageProjectDTO, this.httpOptions);
+  // GET : get the simulation associated to a projet
+  // in this release, we don't support several simulations for a single project, so we keep only the first record
+  getSimulation(mortageProjectId: string): Observable<Simulation> {
+    return this.http.get<Simulation[]>(`${this.baseUrl}/mortgageProjects/` + mortageProjectId + '/homeloanSimulations/', this.httpOptions)
+      .pipe(
+        map(results => results[0]),
+        map(simulationData => new Simulation(simulationData)),
+      );;
   }
 }

@@ -17,6 +17,7 @@ export class SimulationFormComponent implements OnInit {
   simulation: Simulation;
 
   @Output() submitNext = new EventEmitter<Simulation>();
+  @Output() submitPrevious = new EventEmitter<Project>();
 
   constructor(private fb: FormBuilder, private router: Router, private simulationService: MortgageSimulationService) { }
 
@@ -33,6 +34,10 @@ export class SimulationFormComponent implements OnInit {
       loanDuration: ['15', Validators.required],
       periodicity: ['MONTHLY', Validators.required]
     });
+  }
+
+  comeBack() {
+    this.submitPrevious.emit(this.project);
   }
 
   saveSimulation() {

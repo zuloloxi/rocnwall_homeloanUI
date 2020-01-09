@@ -3,7 +3,7 @@
         <div [formGroupName]="i">
             <div class="row">
                 <h5>Emprunteur {{i+1}}</h5>
-                <button class="btn btn-default addBorrower" type="button" (click)="addBorrower()">
+                <button class="btn btn-default addBorrower" type="button" (click)="addNewBorrower()">
                     <i class="far fa-plus-square fa-lg align-top"></i>
                 </button>
 
@@ -13,7 +13,7 @@
             </div>
             <div class="form-group row">
                 <label class="control-label col-md-2">Date de naissance</label>
-                <input formControlName="dateOfBirth" class="col-md-2" type="date" id="dateOfBirth" min="1900-01-01"
+                <input formControlName="dateOfBirth" class="col-md-2" type="date" min="1900-01-01"
                     max="2018-12-31">
             </div>
 
@@ -24,6 +24,6 @@
             </div>
         </div>
     </div>
-
-    <button type="submit" class="btn btn-primary submitForm" [disabled]="!borrowerForm.valid">>></button>
+    <button type="button" class="btn btn-primary col-md-1 previous" (click)="comeBack()"><<</button>
+    <button type="submit" class="btn btn-primary col-md-1 offset-md-10 next" [disabled]="!borrowerForm.valid">>></button>
 </form>

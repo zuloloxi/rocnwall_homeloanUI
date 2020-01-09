@@ -1,0 +1,33 @@
+<div class="row" class="tableauProjet">
+    <h3 class="text-center">Liste des projets de crédit immobilier</h3>
+    <div class="row">
+        <p-table [columns]="cols" [value]="projects">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th class="text-center" *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+                    <th style="width:5em"></th>
+                    <th style="width:5em"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                    </td>
+                    <td>
+                        <button class="btn" (click)="viewSimulation(rowData)">
+                            <i class="fa fa-lg fa-search-plus icon-border"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn" (click)="changeSimulation(rowData)">
+                            <i class="fa fa-lg fa-edit"></i>
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

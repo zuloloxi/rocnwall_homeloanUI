@@ -4,23 +4,24 @@
     </div>
     <div class="row">
         <div class="form-group col-md-2 nature-simulation">
-            <label for="construction">Echéance ?</label>
+            <label for="construction">Echéance cible ?</label>
             <input type="radio" id="paymentTarget" formControlName="simulationTarget" value="PAYMENT" checked>
         </div>
         <div class="form-group col-md-2 nature-simulation">
-            <label for="achat">Capital ?</label>
+            <label for="achat">Capital cible?</label>
             <input type="radio" id="capitalTarget" formControlName="simulationTarget" value="CAPITAL">
         </div>
     </div>
 
     <div class="form-group" *ngIf="simulationForm.value.simulationTarget === 'PAYMENT'">
         <label class="control-label">Capital souhaité (€)</label>
-        <input formControlName="loanAmount" class="form-control" type="number" step="100" min="0" placeholder="0" checked>
+        <input formControlName="loanAmount" class="form-control" type="number" step="100" min="0" placeholder="0"
+            checked>
     </div>
 
     <div class="form-group" *ngIf="simulationForm.value.simulationTarget === 'CAPITAL'">
-        <label class="control-label">Echéance globale souhaitée (€)</label>
-        <input formControlName="globalLoanPayment" class="form-control" type="number" step="100" min="0" placeholder="0">
+        <label class="control-label">Echéance souhaitée (€)</label>
+        <input formControlName="loanPayment" class="form-control" type="number" step="100" min="0" placeholder="0">
     </div>
 
     <div class="row">
@@ -82,6 +83,6 @@
     </div>
 
 
-
-    <button type="submit" class="btn btn-primary" [disabled]="!simulationForm.valid">>></button>
+    <button type="button" class="btn btn-primary col-md-1 previous" (click)="comeBack()"><<</button>
+    <button type="submit" class="btn btn-primary col-md-1 offset-md-10 next" [disabled]="!simulationForm.valid">>></button>
 </form>

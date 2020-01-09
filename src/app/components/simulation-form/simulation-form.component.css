@@ -54,6 +54,6 @@ label {
 .periodicite input:checked {
   border: 6px solid black;
 }
-.btn {
+.next {
     float:right;
 }
