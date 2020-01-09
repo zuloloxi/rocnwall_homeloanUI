@@ -3,11 +3,11 @@
     <div class="K-simulation hidden">
 
         <p class="sh-resutat-title">
-            Votre échéance s'élèverait à <strong>{{simulation.loanPayment.toFixed(0)}}</strong> €.</p>
-
-        <p class="sh-resutat-title">
-            Vous rembourseriez une échéance globale (assurance comprise) de
-            <strong>{{simulation.globalLoanPayment.toFixed(0)}}</strong> €.</p>
+            Sur une durée de {{simulation.loanDuration}} ans, à un taux nominal de {{simulation.loanInterestRate}} %,
+            votre échéance s'élèverait à
+            <strong>{{simulation.loanPayment.toFixed(0)}}</strong> €.</p><br>
+            <p class="sh-resutat-title">
+            Vous rembourseriez une échéance globale (assurance comprise) de <strong>{{simulation.globalLoanPayment.toFixed(0)}}</strong> €.</p>
 
         <p id="mensualiteMax" class="libelle">
             Votre échéance globale maximale conseillée est de <strong>{{project.maxLoanPayment.toFixed(0)}}</strong> €.

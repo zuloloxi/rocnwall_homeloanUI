@@ -26,8 +26,8 @@ export class SimulationFormComponent implements OnInit {
     this.simulationForm = this.fb.group({
       simulationTarget: ['PAYMENT_TARGET', Validators.required],
       personalDeposit: ['0', Validators.required],
-      loanAmount: [''],
-      loanPayment: [''],
+      loanAmount: ['0'],
+      loanPayment: ['0'],
       loanInterestRate: ['1.00', Validators.compose([Validators.required, Validators.min(0), Validators.max(5)])],
       loanInsuranceRate: ['4.80', Validators.compose([Validators.required, Validators.min(0), Validators.max(5)])],
       loanGuarantyRate: ['1.25', Validators.compose([Validators.required, Validators.min(0), Validators.max(5)])],
@@ -40,6 +40,14 @@ export class SimulationFormComponent implements OnInit {
 
     // Convenience getter for easy access to form fields
     get f() { return this.simulationForm.controls; }
+
+    // get per() {
+    // switch(this.simulationForm.value.periodicity) {
+    //       case: MONTHLY return "mensuelle";
+    //       case: QUARTERLY return "trimestrielle";
+    //       case: BIANNUALLY return "semestrielle";
+    //       case: ANNUALLY return "annuelle"; }
+    //   }
 
   comeBack() {
     this.submitPrevious.emit(this.project);
