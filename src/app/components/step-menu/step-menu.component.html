@@ -17,5 +17,4 @@
 <app-simulation-form [project]="currentProject" *ngIf="activeIndex === 2" (submitNext)="incrementSimulationStep($event)"
     (submitPrevious)="decrementSimulationStep($event)">
 </app-simulation-form>
-
-<app-simulation-summary [simulation]="currentSimulation" *ngIf="activeIndex === 3"></app-simulation-summary>
+<app-simulation-summary [project]="currentProject" [simulation]="currentSimulation" *ngIf="activeIndex === 3"></app-simulation-summary>

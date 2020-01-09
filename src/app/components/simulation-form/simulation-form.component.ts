@@ -13,6 +13,7 @@ import { MortgageSimulationService } from 'src/app/services/mortgage-simulation.
 export class SimulationFormComponent implements OnInit {
 
   simulationForm: FormGroup;
+  // submitted = false;
   @Input() project: Project;
   simulation: Simulation;
 
@@ -23,16 +24,17 @@ export class SimulationFormComponent implements OnInit {
 
   ngOnInit() {
     this.simulationForm = this.fb.group({
-      simulationTarget: ['PAYMENT', Validators.required],
-      personalDeposit: ['100000'],
-      loanAmount: ['200000'],
-      globalLoanPayment: ['1300'],
-      loanInterestRate: ['1.00'],
+      simulationTarget: ['PAYMENT_TARGET', Validators.required],
+      personalDeposit: ['', Validators.required],
+      loanAmount: [''],
+      loanPayment: [''],
+      loanInterestRate: ['1.00', Validators.required],
       loanInsuranceRate: ['4.80', Validators.required],
       loanGuarantyRate: ['1.25', Validators.required],
       applicationFee: ['1000', Validators.required],
       loanDuration: ['15', Validators.required],
-      periodicity: ['MONTHLY', Validators.required]
+      periodicity: ['MONTHLY', Validators.required],
+      globalLoanPayment: ['']
     });
   }
 
@@ -40,19 +42,23 @@ export class SimulationFormComponent implements OnInit {
     this.submitPrevious.emit(this.project);
   }
 
+  // Convenience getter for easy access to form fields
+  get f() { return this.simulationForm.controls; }
+
   saveSimulation() {
     // Transforme les données du formulaire en instance de Projet
     const formData = this.simulationForm.value;
     this.simulation = new Simulation({
       personalDeposit: formData.personalDeposit,
       loanAmount: formData.loanAmount,
-      globalLoanPayment: formData.globalLoanPayment,
+      loanPayment: formData.loanPayment,
       loanInterestRate: formData.loanInterestRate,
       loanInsuranceRate: formData.loanInsuranceRate,
       loanGuarantyRate: formData.loanGuarantyRate,
       applicationFee: formData.applicationFee,
       loanDuration: formData.loanDuration,
-      periodicity: formData.periodicity
+      periodicity: formData.periodicity,
+      globalLoanPayment: formData.globalLoanPayment
     });
 
     // Sauvegarde l'instance du projet.

@@ -5,21 +5,21 @@
     <div class="row">
         <div class="form-group col-md-2 nature-simulation">
             <label for="construction">Echéance cible ?</label>
-            <input type="radio" id="paymentTarget" formControlName="simulationTarget" value="PAYMENT" checked>
+            <input type="radio" id="paymentTarget" formControlName="simulationTarget" value="PAYMENT_TARGET" checked>
         </div>
         <div class="form-group col-md-2 nature-simulation">
-            <label for="achat">Capital cible?</label>
-            <input type="radio" id="capitalTarget" formControlName="simulationTarget" value="CAPITAL">
+            <label for="achat">Capital cible ?</label>
+            <input type="radio" id="capitalTarget" formControlName="simulationTarget" value="CAPITAL_TARGET">
         </div>
     </div>
 
-    <div class="form-group" *ngIf="simulationForm.value.simulationTarget === 'PAYMENT'">
+    <div class="form-group" *ngIf="simulationForm.value.simulationTarget === 'PAYMENT_TARGET'">
         <label class="control-label">Capital souhaité (€)</label>
         <input formControlName="loanAmount" class="form-control" type="number" step="100" min="0" placeholder="0"
             checked>
     </div>
 
-    <div class="form-group" *ngIf="simulationForm.value.simulationTarget === 'CAPITAL'">
+    <div class="form-group" *ngIf="simulationForm.value.simulationTarget === 'CAPITAL_TARGET'">
         <label class="control-label">Echéance souhaitée (€)</label>
         <input formControlName="loanPayment" class="form-control" type="number" step="100" min="0" placeholder="0">
     </div>
@@ -48,13 +48,23 @@
 
     <div class="form-group">
         <label class="control-label">Apport personnel (€)</label>
-        <input formControlName="personalDeposit" class="form-control" type="number" step="100" min="0" placeholder="0">
+        <input formControlName="personalDeposit" class="form-control"
+            type="number" step="100" min="0" placeholder="0"/>
+        <span *ngIf="f.personalDeposit.invalid && f.personalDeposit.errors.required">
+            L'apport personnel est requis.
+        </span>
     </div>
 
     <div class="form-group">
         <label class="control-label">Taux d'intérêt nominal annuel (%)</label>
-        <input formControlName="loanInterestRate" class="form-control" type="number" step="0.01" min="0"
-            placeholder="0">
+        <input formControlName="loanInterestRate" class="form-control"
+            type="number" step="0.10" min="0.00" placeholder="0" customMax="10.00">
+        <span *ngIf="f.loanInterestRate.invalid && f.loanInterestRate.errors.required">
+            Le taux annuel d'intérêt nominal est requis.
+        </span>
+      <div *ngIf="f.loanInterestRate.errors?.customMax">
+            Maximum number can be 10.
+      </div>
     </div>
 
     <!-- Taux d'assurance sur capital emprunté -->

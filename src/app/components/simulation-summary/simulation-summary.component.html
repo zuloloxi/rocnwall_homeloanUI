@@ -6,11 +6,10 @@
             Votre échéance s'élèverait à <strong>{{simulation.loanPayment.toFixed(0)}}</strong> €.</p>
 
             <p class="sh-resutat-title">
-            Votre échéance globale (assurance comprise) s'élèverait à <strong>{{simulation.globalLoanPayment.toFixed(0)}}</strong> €.</p>
+            Vous rembourseriez une échéance globale (assurance comprise) de <strong>{{simulation.globalLoanPayment.toFixed(0)}}</strong> €.</p>
 
         <p id="mensualiteMax" class="libelle">
-            <!-- Votre échéance globale maximale conseillée est de <strong>{{project.maxLoanPayment}}</strong> €. -->
-            Votre échéance globale maximale conseillée est de <strong>? (valeur dans le mortgageProject)</strong> €.
+            Votre échéance globale maximale conseillée est de <strong>{{project.maxLoanPayment.toFixed(0)}}</strong> €.
         </p>
 
         <div class="sh-simu-meteo">
@@ -107,5 +106,5 @@
             </li>
 
         </ul>
-    </div>>
+    </div>
 </div>
