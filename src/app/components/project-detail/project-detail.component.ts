@@ -15,25 +15,29 @@ import { Observable } from 'rxjs';
 export class ProjectDetailComponent implements OnInit {
   project: Project;
   mortgageSimulation: Simulation;
+  doesDataExist: boolean;
+
 
   constructor(private mortgageSimulationService: MortgageSimulationService,
               private mortgageProjectService: MortgageProjectService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) { };
 
   ngOnInit() {
+    this.doesDataExist = false;
+
     const projectId = this.route.snapshot.paramMap.get('id');
     console.log(projectId);
 
-    const obsSimulation: Observable<Simulation> = this.mortgageSimulationService.getSimulation(projectId);
-    obsSimulation.subscribe(data => {
-      this.mortgageSimulation = data;
-      console.log(this.mortgageSimulation);
-    });
+    // Récupération des donnnées dans le repository
     const obsProject: Observable<Project> = this.mortgageProjectService.getMortgageProject(projectId);
     obsProject.subscribe(data => {
-      this.project= data;
+      this.project = data;
+      const obsSimulation: Observable<Simulation> = this.mortgageSimulationService.getSimulation(projectId);
+      obsSimulation.subscribe(data => {
+        this.mortgageSimulation = data;
+        this.doesDataExist = true;
+      });
     });
 
   }
-
 }
