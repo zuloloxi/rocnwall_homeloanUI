@@ -9,7 +9,8 @@ import { StepMenuComponent } from './components/step-menu/step-menu.component';
 import { MenuModule } from 'primeng/menu';
 import { StepsModule } from 'primeng/steps';
 import { TableModule } from 'primeng/table';
-import { TabMenuModule, TabMenu } from 'primeng/tabmenu';
+import { TabMenuModule} from 'primeng/tabmenu';
+import { DropdownModule } from "primeng/dropdown"
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -43,6 +44,7 @@ import { MenuComponent } from './components/menu/menu.component';
     StepsModule,
     TableModule,
     TabMenuModule,
+    DropdownModule,
     HttpClientModule
   ],
   providers: [

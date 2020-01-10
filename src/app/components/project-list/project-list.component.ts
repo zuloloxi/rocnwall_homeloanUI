@@ -3,6 +3,7 @@ import { MortgageProjectService } from 'src/app/services/mortgage-project.servic
 import { Project } from 'src/app/Models/mortgage-project';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { SelectItem } from 'primeng/api/selectitem';
 
 @Component({
   selector: 'app-project-list',
@@ -15,6 +16,8 @@ export class ProjectListComponent implements OnInit {
   cols: any[];
   selectedProject: Project;
 
+  projectTypes: SelectItem[];
+
 
   constructor(private mortgageProjectService: MortgageProjectService, private projectListRouter: Router) { }
 
@@ -26,15 +29,19 @@ export class ProjectListComponent implements OnInit {
       { field: 'maxLoanPayment', header: 'Echéance globale max conseillée' }
     ];
 
+    this.projectTypes = [
+      { label: 'Tous', value: null },
+      { label: 'Achat', value: 'PURCHASE' },
+      { label: 'Construction', value: 'CONSTRUCTION' },
+    ];
+
     const obsProjectList: Observable<Project[]> = this.mortgageProjectService.getAllMortgageProjects();
     obsProjectList.subscribe(data => {
       this.projects = data;
-      // console.log(this.projects);
     });
   }
 
   viewSimulation(project: Project) {
-    // console.log(project.referenceId);
     this.projectListRouter.navigate(['/projects/view/', project.id]);
   }
 

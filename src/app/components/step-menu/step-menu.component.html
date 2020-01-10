@@ -7,14 +7,16 @@
         </div>
     </div>
 </div>
+<div *ngIf="doesDataExist === true">
+    <app-project-form *ngIf="activeIndex === 0" [project]="currentProject" [isSavedProject]="isSavedProject"
+        (submitNext)="incrementProjectStep($event)"></app-project-form>
 
-<app-project-form *ngIf="activeIndex === 0" [project]="currentProject" [isSavedProject]="isSavedProject"
-    (submitNext)="incrementProjectStep($event)"></app-project-form>
+    <app-borrower-form [project]="currentProject" [isSavedProject]="isSavedProject" *ngIf="activeIndex === 1"
+        (submitNext)="incrementProjectStep($event)" (submitPrevious)="decrementProjectStep($event)"></app-borrower-form>
 
-<app-borrower-form [project]="currentProject" [isSavedProject]="isSavedProject" *ngIf="activeIndex === 1"
-    (submitNext)="incrementProjectStep($event)" (submitPrevious)="decrementProjectStep($event)"></app-borrower-form>
-
-<app-simulation-form [project]="currentProject" *ngIf="activeIndex === 2" (submitNext)="incrementSimulationStep($event)"
-    (submitPrevious)="decrementSimulationStep($event)">
-</app-simulation-form>
-<app-simulation-summary [project]="currentProject" [simulation]="currentSimulation" *ngIf="activeIndex === 3"></app-simulation-summary>
+    <app-simulation-form [project]="currentProject" *ngIf="activeIndex === 2"
+        (submitNext)="incrementSimulationStep($event)" (submitPrevious)="decrementSimulationStep($event)">
+    </app-simulation-form>
+    <app-simulation-summary [project]="currentProject" [simulation]="currentSimulation" *ngIf="activeIndex === 3">
+    </app-simulation-summary>
+</div>

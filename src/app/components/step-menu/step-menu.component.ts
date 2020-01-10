@@ -20,18 +20,29 @@ export class StepMenuComponent implements OnInit {
   currentProject: Project;
   currentSimulation: Simulation;
   isSavedProject: boolean;
+  doesDataExist: boolean;
 
-  constructor(private route: ActivatedRoute, private mortgageProjectService: MortgageProjectService) { }
+  constructor(private route: ActivatedRoute,
+              private mortgageProjectService: MortgageProjectService,
+              private mortgageSimulationService: MortgageSimulationService) { }
 
   ngOnInit() {
+    this.doesDataExist = false;
+
     const projectId = this.route.snapshot.paramMap.get('id');
     if (projectId) {
       const obsProject: Observable<Project> = this.mortgageProjectService.getMortgageProject(projectId);
       obsProject.subscribe(data => {
-        this.currentProject= data;
+        this.currentProject = data;
+        const obsSimulation: Observable<Simulation> = this.mortgageSimulationService.getSimulation(projectId);
+        obsSimulation.subscribe(otherData => {
+          this.currentSimulation = otherData;
+          this.doesDataExist = true;
+        });
       });
       this.isSavedProject = true;
     } else {
+      this.doesDataExist = true;
       this.isSavedProject = false;
     }
 

@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'projects', component: ProjectListComponent },
   { path: 'projects/view/:id', component: ProjectDetailComponent},
   { path: 'projects/edit/:id', component: StepMenuComponent },
-  { path: '', redirectTo: 'simulation/new', pathMatch: 'full' }
+  { path: '', redirectTo: 'projects', pathMatch: 'full' }
 ];
 
 @NgModule({
