@@ -49,11 +49,11 @@ export class ProjectListComponent implements OnInit {
   }
 
   viewSimulation(project: Project) {
-    this.projectListRouter.navigate(['/projects/view/', project.id]);
+    this.projectListRouter.navigate(['/projects', project.id, 'view']);
   }
 
   changeSimulation(project: Project) {
     console.log(project.referenceId);
-    this.projectListRouter.navigate(['/projects/edit/', project.id]);
+    this.projectListRouter.navigate(['/projects/', project.id, 'edit']);
   }
 }

@@ -14,7 +14,7 @@ export class MortgageSimulationService {
   };
 
   constructor(private http: HttpClient,
-    @Inject('BACKEND_URL') private baseUrl: string) { }
+              @Inject('BACKEND_URL') private baseUrl: string) { }
 
   // POST : add a new simulationto the project
   addSimulationToMortgageProject(mortageProjectId: string, simulationDTO: Simulation): Observable<Simulation> {
@@ -31,4 +31,16 @@ export class MortgageSimulationService {
         map(simulationData => new Simulation(simulationData)),
       );;
   }
+
+
+  // GET : get the simulation associated to a projet
+  // in this release, we don't support several simulations for a single project, so we keep only the first record
+  getAllSimulations(mortageProjectId: string): Observable<Simulation[]> {
+    return this.http.get<Simulation[]>(`${this.baseUrl}/mortgageProjects/` + mortageProjectId + '/homeloanSimulations/', this.httpOptions)
+      .pipe(
+        map((simulationArray: any[]) => simulationArray.
+        map(simulationData => new Simulation(simulationData)))
+      );
+  }
+
 }

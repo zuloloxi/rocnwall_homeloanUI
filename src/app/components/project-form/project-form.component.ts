@@ -26,7 +26,8 @@ export class ProjectFormComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private projectService: MortgageProjectService) { }
 
   ngOnInit() {
-    if (!this.isSavedProject) {
+    console.log(this.project);
+    if (!this.isSavedProject === true) {
       this.projectForm = this.fb.group({
         referenceId: [Math.random().toString(10),
         Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(30)])],

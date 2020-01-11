@@ -1,4 +1,17 @@
-<div id="simulationResultContainer" class="sh-resultat center sh-wrapper with-details">
+<p-dialog header="headerMsg" [(visible)]="displayError" [modal]="true" [responsive]="true"
+    [style]="{width: '350px', minWidth: '200px'}" [minY]="70">
+    <p>Le service est actuellement indisponible. Veuillez vous reconnecter ultérieurement.</p>
+    <p>Erreur : {{errorMsg}}</p>
+</p-dialog>
+
+<div #alert class="alert alert-info alert-dismissible fade show" role="alert" *ngIf="displayAlert===true">
+    <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>{{headerMsg}}</strong> {{errorMsg}}
+</div>
+
+<div *ngIf="isDataReceived===true" id="simulationResultContainer" class="sh-resultat center sh-wrapper with-details">
 
     <div class="K-simulation hidden">
 

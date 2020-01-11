@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 
 export class ProjectDetailComponent implements OnInit {
+  projectId : string;
   project: Project;
   mortgageSimulation: Simulation;
   doesDataExist: boolean;
@@ -28,26 +29,6 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit() {
     this.doesDataExist = false;
 
-    const projectId = this.route.snapshot.paramMap.get('id');
-    console.log(projectId);
-
-    // Récupération des donnnées dans le repository
-    const obsProject: Observable<Project> = this.mortgageProjectService.getMortgageProject(projectId);
-    obsProject.subscribe(data => {
-      this.project = data;
-      const obsSimulation: Observable<Simulation> = this.mortgageSimulationService.getSimulation(projectId);
-      obsSimulation.subscribe(otherData => {
-        this.mortgageSimulation = otherData;
-        this.doesDataExist = true;
-      },
-        (error) => {
-          this.errorMsg = `${error.statusText} (${error.status})`;
-          this.displayError = true;
-        });
-    },
-      (error) => {
-        this.errorMsg = `${error.statusText} (${error.status})`;
-        this.displayError = true;
-      });
+    this.projectId = this.route.snapshot.paramMap.get('id');
   }
 }

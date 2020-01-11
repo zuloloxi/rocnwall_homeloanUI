@@ -1,12 +1,3 @@
-<p-dialog header="Avertissement" [(visible)]="displayError" [modal]="true" [responsive]="true"
-    [style]="{width: '350px', minWidth: '200px'}" [minY]="70">
-    <p>Le service est actuellement indisponible. Veuillez vous reconnecter ultérieurement.</p>
-    <p>Erreur : {{errorMsg}}</p>
-</p-dialog>
-
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="/projects">Retour à la liste</a></li>
-    </ol>
-</nav>
-<app-simulation-summary *ngIf="doesDataExist === true"  [project]="project" [simulation]="mortgageSimulation"></app-simulation-summary>
+<div class="simulation">
+<app-simulation-summary  [projectId]="projectId"></app-simulation-summary>
+</div>

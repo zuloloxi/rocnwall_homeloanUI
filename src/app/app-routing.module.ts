@@ -8,8 +8,8 @@ import { ProjectDetailComponent } from './components/project-detail/project-deta
 const routes: Routes = [
   { path: 'simulation/new', component: StepMenuComponent },
   { path: 'projects', component: ProjectListComponent },
-  { path: 'projects/view/:id', component: ProjectDetailComponent},
-  { path: 'projects/edit/:id', component: StepMenuComponent },
+  { path: 'projects/:id/view', component: ProjectDetailComponent},
+  { path: 'projects/:id/edit', component: StepMenuComponent },
   { path: '', redirectTo: 'projects', pathMatch: 'full' }
 ];
 
