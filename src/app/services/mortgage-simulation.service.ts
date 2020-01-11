@@ -22,6 +22,12 @@ export class MortgageSimulationService {
       simulationDTO, this.httpOptions);
   }
 
+  // POST : add a new simulationto the project
+  updateSimulationOfMortgageProject(mortageProjectId: string, simulationId: string, simulationDTO: Simulation): Observable<Simulation> {
+    return this.http.put<Simulation>(`${this.baseUrl}/mortgageProjects/` + mortageProjectId + '/homeloanSimulations/' + simulationId,
+      simulationDTO, this.httpOptions);
+  }
+
   // GET : get the simulation associated to a projet
   // in this release, we don't support several simulations for a single project, so we keep only the first record
   getSimulation(mortageProjectId: string): Observable<Simulation> {

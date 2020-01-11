@@ -1,4 +1,5 @@
 interface SimulationOptions {
+    id?: string;
     simulationDate?: Date;
     personalDeposit: number;
     loanAmount: number;
@@ -26,13 +27,14 @@ export enum CalculationMode {
 }
 
 export enum Periodicity {
-    MONTHLY,
-    QUARTERLY,
-    BIANNUALLY,
-    ANNUALLY
+    Mensuelle,
+    Trimestrielle,
+    Semestrielle,
+    Annuelle
 }
 
 export class Simulation {
+    id: string;
     simulationDate: Date;
     personalDeposit: number;
     loanAmount: number;
@@ -54,6 +56,7 @@ export class Simulation {
     creditRequest: boolean;
 
     constructor(options: SimulationOptions) {
+        this.id = options.id;
         this.simulationDate = options.simulationDate;
         this.personalDeposit = options.personalDeposit;
         this.loanAmount = options.loanAmount;

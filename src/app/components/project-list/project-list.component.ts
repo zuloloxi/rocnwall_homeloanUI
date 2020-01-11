@@ -33,8 +33,8 @@ export class ProjectListComponent implements OnInit {
 
     this.projectTypes = [
       { label: 'Tous', value: null },
-      { label: 'Achat', value: 'PURCHASE' },
-      { label: 'Construction', value: 'CONSTRUCTION' },
+      { label: 'Achat', value: 'Achat' },
+      { label: 'Construction', value: 'Construction' },
     ];
 
     const obsProjectList: Observable<Project[]> = this.mortgageProjectService.getAllMortgageProjects();

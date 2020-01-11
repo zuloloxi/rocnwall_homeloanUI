@@ -14,7 +14,7 @@
     <app-borrower-form [project]="currentProject" [isSavedProject]="isSavedProject" *ngIf="activeIndex === 1"
         (submitNext)="incrementProjectStep($event)" (submitPrevious)="decrementProjectStep($event)"></app-borrower-form>
 
-    <app-simulation-form [project]="currentProject" *ngIf="activeIndex === 2"
+    <app-simulation-form [project]="currentProject" [simulation]="currentSimulation" *ngIf="activeIndex === 2"
         (submitNext)="incrementSimulationStep($event)" (submitPrevious)="decrementSimulationStep($event)">
     </app-simulation-form>
     <app-simulation-summary [projectId]="currentProject.id" *ngIf="activeIndex === 3">

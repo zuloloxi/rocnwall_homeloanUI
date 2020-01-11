@@ -42,6 +42,7 @@ export class StepMenuComponent implements OnInit {
             this.currentSimulation = simulations[0];
           }
           this.isDataReceived = true;
+          console.log(this.currentSimulation);
         });
       });
     } else {
