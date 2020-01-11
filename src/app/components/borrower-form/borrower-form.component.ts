@@ -21,13 +21,15 @@ export class BorrowerFormComponent implements OnInit {
   @Output() submitPrevious = new EventEmitter<any>();
   @Output() submitNext = new EventEmitter<Project>();
 
+  displayError = false;
+  errorMsg: string;
+
   constructor(private fb: FormBuilder, private router: Router, private projectService: MortgageProjectService) { }
 
   ngOnInit() {
     this.borrowerForm = this.fb.group({
       dateOfBirth: ['1980-01-01', Validators.required],
       netIncome: ['4000', Validators.required],
-      // borrowers: this.fb.array([this.newBorrower('1980-01-01', '4000')])
       borrowers: this.fb.array([])
     });
     this.borrowerList = this.borrowerForm.get('borrowers') as FormArray;
@@ -78,6 +80,10 @@ export class BorrowerFormComponent implements OnInit {
     this.projectService.updateMortgageProject(this.project).subscribe(data => {
       this.project.maxLoanPayment = data.maxLoanPayment;
       this.submitNext.emit(this.project);
-    });
+    },
+      (error) => {
+        this.errorMsg = `${error.statusText} (${error.status})`;
+        this.displayError = true;
+      });
   }
 }

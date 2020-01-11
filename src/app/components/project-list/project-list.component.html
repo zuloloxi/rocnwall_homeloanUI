@@ -1,3 +1,9 @@
+<p-dialog header="Avertissement" [(visible)]="displayError" [modal]="true" [responsive]="true"
+    [style]="{width: '350px', minWidth: '200px'}" [minY]="70">
+    <p>Le service est actuellement indisponible. Veuillez vous reconnecter ultérieurement.</p>
+    <p>Erreur : {{errorMsg}}</p>
+</p-dialog>
+
 <div class="row" class="tableauProjet">
     <h3 class="text-center">Liste des projets de crédit immobilier</h3>
     <div class="row">

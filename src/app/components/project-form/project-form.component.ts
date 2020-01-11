@@ -20,13 +20,16 @@ export class ProjectFormComponent implements OnInit {
 
   currentProject: Project;
 
+  displayError = false;
+  errorMsg: string;
+
   constructor(private fb: FormBuilder, private router: Router, private projectService: MortgageProjectService) { }
 
   ngOnInit() {
     if (!this.isSavedProject) {
       this.projectForm = this.fb.group({
         referenceId: [Math.random().toString(10),
-                        Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(30)])],
+        Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(30)])],
         projectType: ['PURCHASE', Validators.required],
         householdCharges: ['100']
       });
@@ -55,9 +58,12 @@ export class ProjectFormComponent implements OnInit {
       this.projectService.addMortgageProject(this.project).subscribe(data => {
         // Récupération de l'Id du projet créé dans le backend
         this.project.id = data.id;
-        console.log(this.project);
         this.submitNext.emit(this.project);
-      });
+      },
+        (error) => {
+          this.errorMsg = `${error.statusText} (${error.status})`;
+          this.displayError = true;
+        });
     } else {
       this.project.referenceId = formData.referenceId;
       this.project.projectType = formData.projectType;
@@ -65,9 +71,11 @@ export class ProjectFormComponent implements OnInit {
       // Modifie l'instance existante
       this.projectService.updateMortgageProject(this.project).subscribe(data => {
         this.submitNext.emit(this.project);
-      });
+      },
+        (error) => {
+          this.errorMsg = `${error.statusText} (${error.status})`;
+          this.displayError = true;
+        });
     }
   }
-
-
 }

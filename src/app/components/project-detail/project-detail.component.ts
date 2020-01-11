@@ -17,6 +17,9 @@ export class ProjectDetailComponent implements OnInit {
   mortgageSimulation: Simulation;
   doesDataExist: boolean;
 
+  displayError = false;
+  errorMsg: string;
+
 
   constructor(private mortgageSimulationService: MortgageSimulationService,
               private mortgageProjectService: MortgageProjectService,
@@ -36,10 +39,15 @@ export class ProjectDetailComponent implements OnInit {
       obsSimulation.subscribe(otherData => {
         this.mortgageSimulation = otherData;
         this.doesDataExist = true;
-        console.log(this.project);
-        console.log(this.mortgageSimulation);
+      },
+        (error) => {
+          this.errorMsg = `${error.statusText} (${error.status})`;
+          this.displayError = true;
+        });
+    },
+      (error) => {
+        this.errorMsg = `${error.statusText} (${error.status})`;
+        this.displayError = true;
       });
-    });
-
   }
 }

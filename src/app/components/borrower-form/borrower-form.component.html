@@ -1,3 +1,9 @@
+<p-dialog header="Avertissement" [(visible)]="displayError" [modal]="true" [responsive]="true"
+    [style]="{width: '350px', minWidth: '200px'}" [minY]="70">
+    <p>Le service est actuellement indisponible. Veuillez vous reconnecter ultérieurement.</p>
+    <p>Erreur : {{errorMsg}}</p>
+</p-dialog>
+
 <form class=formulaire-emprunteur [formGroup]="borrowerForm" (ngSubmit)="saveBorrower()" novalidate>
     <div formArrayName="borrowers" *ngFor="let borrowers of borrowerList.controls; let i=index">
         <div [formGroupName]="i">

@@ -1,3 +1,9 @@
+<p-dialog header="Avertissement" [(visible)]="displayError" [modal]="true" [responsive]="true"
+    [style]="{width: '350px', minWidth: '200px'}" [minY]="70">
+    <p>Le service est actuellement indisponible. Veuillez vous reconnecter ultérieurement.</p>
+    <p>Erreur : {{errorMsg}}</p>
+</p-dialog>
+
 <form class=formulaire-projet [formGroup]="projectForm" (ngSubmit)="saveProject()" novalidate>
     <div class="row">
         <h6 class="col-md-12">Quelle est la nature de votre projet ?</h6>

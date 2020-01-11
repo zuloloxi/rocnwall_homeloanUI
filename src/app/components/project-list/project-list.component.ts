@@ -18,6 +18,8 @@ export class ProjectListComponent implements OnInit {
 
   projectTypes: SelectItem[];
 
+  displayError = false;
+  errorMsg: string;
 
   constructor(private mortgageProjectService: MortgageProjectService, private projectListRouter: Router) { }
 
@@ -38,7 +40,12 @@ export class ProjectListComponent implements OnInit {
     const obsProjectList: Observable<Project[]> = this.mortgageProjectService.getAllMortgageProjects();
     obsProjectList.subscribe(data => {
       this.projects = data;
-    });
+    },
+      (error) => {
+        this.errorMsg = `${error.statusText} (${error.status})`;
+        console.log('Une erreur est arrivée:' + this.errorMsg);
+        this.displayError = true;
+      });
   }
 
   viewSimulation(project: Project) {

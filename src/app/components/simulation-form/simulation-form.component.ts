@@ -20,6 +20,9 @@ export class SimulationFormComponent implements OnInit {
   @Output() submitNext = new EventEmitter<Simulation>();
   @Output() submitPrevious = new EventEmitter<Project>();
 
+  displayError = false;
+  errorMsg: string;
+
   constructor(private fb: FormBuilder, private router: Router, private simulationService: MortgageSimulationService) { }
 
   ngOnInit() {
@@ -76,9 +79,11 @@ export class SimulationFormComponent implements OnInit {
     this.simulationService.addSimulationToMortgageProject(this.project.id, this.simulation).subscribe(data => {
       this.simulation = data;
       this.project.simulations.push(this.simulation);
-      // Confirmation
-      // alert('Projet bien enregistré !');
       this.submitNext.emit(this.simulation);
-    });
+    },
+      (error) => {
+        this.errorMsg = `${error.statusText} (${error.status})`;
+        this.displayError = true;
+      });
   }
 }
