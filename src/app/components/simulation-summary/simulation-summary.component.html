@@ -17,7 +17,7 @@
 
         <p class="sh-resutat-title">
             Sur une durée de {{simulation.loanDuration}} ans, à un taux nominal de {{simulation.loanInterestRate}} %,
-            votre échéance s'élèverait à
+            votre échéance {{simulation.periodicity.toString().toLowerCase()}} s'élèverait à
             <strong>{{simulation.loanPayment.toFixed(0)}}</strong> €.</p><br>
             <p class="sh-resutat-title">
             Vous rembourseriez une échéance globale (assurance comprise) de <strong>{{simulation.globalLoanPayment.toFixed(0)}}</strong> €.</p>
@@ -26,41 +26,17 @@
             Votre échéance globale maximale conseillée est de <strong>{{project.maxLoanPayment.toFixed(0)}}</strong> €.
         </p>
 
-        <div class="sh-simu-meteo">
-            <div class="simu-OK banner">
-                <i class="icon icon-meteo-1"></i>
-                <p></p>
-                <div class="help-text-container">
-                    <p class="help-text">
-                        <span class="circle-container">
-                            <span class="circle circle-small" style="vertical-align: inherit;">Météo OK à simuler</span>
-                        </span>
-                    </p>
-                    <div class="help-text-popup hidden">
-                        <div class="arrow"></div>
-                        <div class="popover-content">
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="simu-alert banner">
-                <i class="iconc2v c2v-meteo-ko" style="color: #D4056E;font-size: 30px;"></i>
-                <p></p>
-                <div class="help-text-container">
-                    <p class="help-text">
-                        <span class="circle-container">
-                            <span class="circle circle-small" style="vertical-align: inherit;">Météo KO à simuler</span>
-                        </span>
-                    </p>
-                    <div class="help-text-popup hidden">
-                        <div class="arrow"></div>
-                        <div class="popover-content">
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div *ngIf="simulation.globalLoanPayment <= project.maxLoanPayment">
+            <a class="simulationOK">
+            Votre projet de crédit immobilier s'annonce bien ! <img  src="./assets/sun.png" width="100">
+            </a>
+        </div>
+
+        <div *ngIf="simulation.globalLoanPayment > project.maxLoanPayment">
+            <a class="simulationKO">
+            Vous dépasseriez l'échéance globale max. conseillée (<strong>{{project.maxLoanPayment.toFixed(0)}}</strong> €) !
+                <img  src="./assets/storm.png" width="100">
+            </a>
         </div>
 
         <ul class="list-sh-detail">

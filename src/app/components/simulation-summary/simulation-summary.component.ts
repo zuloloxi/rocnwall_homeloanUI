@@ -26,6 +26,7 @@ export class SimulationSummaryComponent implements OnInit {
   errorMsg: string;
   headerMsg: string;
 
+
   constructor(private mortgageSimulationService: MortgageSimulationService,
               private mortgageProjectService: MortgageProjectService,
               private route: ActivatedRoute,
