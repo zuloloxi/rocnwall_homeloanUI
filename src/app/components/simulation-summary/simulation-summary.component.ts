@@ -24,7 +24,7 @@ export class SimulationSummaryComponent implements OnInit {
   displayError = false;
   displayAlert = false;
   errorMsg: string;
-  headerMsg: String;
+  headerMsg: string;
 
   constructor(private mortgageSimulationService: MortgageSimulationService,
               private mortgageProjectService: MortgageProjectService,
@@ -42,8 +42,8 @@ export class SimulationSummaryComponent implements OnInit {
       obsSimulation.subscribe(otherData => {
         const simulations: Simulation[] = otherData;
         if (simulations.length === 0) {
-          this.headerMsg = 'Information:'
-          this.errorMsg = "Il n'existe pas de simulation sur ce dossier";
+          this.headerMsg = 'Information:';
+          this.errorMsg = 'Pas de simulation sur ce dossier';
           this.displayAlert = true;
         } else {
           // In this release, we only support one simulation for a project.

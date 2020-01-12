@@ -27,8 +27,8 @@ export class ProjectListComponent implements OnInit {
     this.cols = [
       { field: 'referenceId', header: 'Référence' },
       { field: 'projectType', header: 'Type de projet' },
-      { field: 'householdCharges', header: 'Charges globales' },
-      { field: 'maxLoanPayment', header: 'Echéance globale max conseillée' }
+      // { field: 'householdCharges', header: 'Charges globales' },
+      // { field: 'maxLoanPayment', header: 'Echéance globale max conseillée' }
     ];
 
     this.projectTypes = [
